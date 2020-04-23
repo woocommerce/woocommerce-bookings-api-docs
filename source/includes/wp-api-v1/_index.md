@@ -7,4616 +7,3987 @@ By default, the API provides information about all available endpoints on the si
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v1</h6>
+		<h6>/wp-json/wc-bookings/v1</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v1
-```
-
-```javascript
-WooCommerce.get("")
-  .then((response) => {
-    console.log(response.data);
-  })
-  .catch((error) => {
-    console.log(error.response.data);
-  });
-```
-
-```php
-<?php print_r($woocommerce->get('')); ?>
-```
-
-```python
-print(wcapi.get("").json())
-```
-
-```ruby
-woocommerce.get("").parsed_response
+curl https://example.com/wp-json/wc-bookings/v1
 ```
 
 > JSON response example:
 
 ```json
 {
-  "namespace": "wc/v1",
-  "routes": {
-    "/wc/v1": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "namespace": {
-              "required": false,
-              "default": "wc/v1"
-            },
-            "context": {
-              "required": false,
-              "default": "view"
+    "namespace": "wc-bookings/v1",
+    "routes": {
+        "/wc-bookings/v1": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "namespace": {
+                            "required": false,
+                            "default": "wc-bookings/v1"
+                        },
+                        "context": {
+                            "required": false,
+                            "default": "view"
+                        }
+                    }
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1"
             }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1"
-      }
-    },
-    "/wc/v1/coupons": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "after": {
-              "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
-            },
-            "before": {
-              "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "offset": {
-              "required": false,
-              "description": "Offset the result set by a specific number of items."
-            },
-            "order": {
-              "required": false,
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "date",
-              "enum": [
-                "date",
-                "id",
-                "include",
-                "title",
-                "slug"
-              ],
-              "description": "Sort collection by object attribute."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to posts with a specific slug."
-            },
-            "filter": {
-              "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
-            },
-            "code": {
-              "required": false,
-              "description": "Limit result set to resources with a specific code."
-            }
-          }
         },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "code": {
-              "required": true
-            },
-            "description": {
-              "required": false,
-              "description": "Coupon description."
-            },
-            "discount_type": {
-              "required": false,
-              "default": "fixed_cart",
-              "enum": [
-                "fixed_cart",
-                "percent",
-                "fixed_product",
-                "percent_product"
-              ],
-              "description": "Determines the type of discount that will be applied."
-            },
-            "amount": {
-              "required": false,
-              "description": "The amount of discount."
-            },
-            "expiry_date": {
-              "required": false,
-              "description": "UTC DateTime when the coupon expires."
-            },
-            "individual_use": {
-              "required": false,
-              "default": false,
-              "description": "Whether coupon can only be used individually."
-            },
-            "product_ids": {
-              "required": false,
-              "description": "List of product ID's the coupon can be used on."
-            },
-            "exclude_product_ids": {
-              "required": false,
-              "description": "List of product ID's the coupon cannot be used on."
-            },
-            "usage_limit": {
-              "required": false,
-              "description": "How many times the coupon can be used."
-            },
-            "usage_limit_per_user": {
-              "required": false,
-              "description": "How many times the coupon can be used per customer."
-            },
-            "limit_usage_to_x_items": {
-              "required": false,
-              "description": "Max number of items in the cart the coupon can be applied to."
-            },
-            "free_shipping": {
-              "required": false,
-              "default": false,
-              "description": "Define if can be applied for free shipping."
-            },
-            "product_categories": {
-              "required": false,
-              "description": "List of category ID's the coupon applies to."
-            },
-            "excluded_product_categories": {
-              "required": false,
-              "description": "List of category ID's the coupon does not apply to."
-            },
-            "exclude_sale_items": {
-              "required": false,
-              "default": false,
-              "description": "Define if should not apply when have sale items."
-            },
-            "minimum_amount": {
-              "required": false,
-              "description": "Minimum order amount that needs to be in the cart before coupon applies."
-            },
-            "maximum_amount": {
-              "required": false,
-              "description": "Maximum order amount allowed when using the coupon."
-            },
-            "email_restrictions": {
-              "required": false,
-              "description": "List of email addresses that can use this coupon."
+        "/wc-bookings/v1/products": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET",
+                "POST"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "context": {
+                            "required": false,
+                            "default": "view",
+                            "enum": [
+                                "view",
+                                "edit"
+                            ],
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string"
+                        },
+                        "page": {
+                            "required": false,
+                            "default": 1,
+                            "description": "Current page of the collection.",
+                            "type": "integer"
+                        },
+                        "per_page": {
+                            "required": false,
+                            "default": 10,
+                            "description": "Maximum number of items to be returned in result set.",
+                            "type": "integer"
+                        },
+                        "search": {
+                            "required": false,
+                            "description": "Limit results to those matching a string.",
+                            "type": "string"
+                        },
+                        "after": {
+                            "required": false,
+                            "description": "Limit response to resources published after a given ISO8601 compliant date.",
+                            "type": "string"
+                        },
+                        "before": {
+                            "required": false,
+                            "description": "Limit response to resources published before a given ISO8601 compliant date.",
+                            "type": "string"
+                        },
+                        "exclude": {
+                            "required": false,
+                            "default": [],
+                            "description": "Ensure result set excludes specific IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "include": {
+                            "required": false,
+                            "default": [],
+                            "description": "Limit result set to specific ids.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "offset": {
+                            "required": false,
+                            "description": "Offset the result set by a specific number of items.",
+                            "type": "integer"
+                        },
+                        "order": {
+                            "required": false,
+                            "default": "desc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "description": "Order sort attribute ascending or descending.",
+                            "type": "string"
+                        },
+                        "orderby": {
+                            "required": false,
+                            "default": "date",
+                            "enum": [
+                                "date",
+                                "id",
+                                "include",
+                                "title",
+                                "slug",
+                                "menu_order",
+                                "price",
+                                "popularity",
+                                "rating"
+                            ],
+                            "description": "Sort collection by object attribute.",
+                            "type": "string"
+                        },
+                        "parent": {
+                            "required": false,
+                            "default": [],
+                            "description": "Limit result set to those of particular parent IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "parent_exclude": {
+                            "required": false,
+                            "default": [],
+                            "description": "Limit result set to all items except those of a particular parent ID.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "slug": {
+                            "required": false,
+                            "description": "Limit result set to products with a specific slug.",
+                            "type": "string"
+                        },
+                        "status": {
+                            "required": false,
+                            "default": "publish",
+                            "enum": [
+                                "any",
+                                "future",
+                                "draft",
+                                "pending",
+                                "private",
+                                "publish"
+                            ],
+                            "description": "Limit result set to products assigned a specific status.",
+                            "type": "string"
+                        },
+                        "type": {
+                            "required": false,
+                            "default": "booking",
+                            "enum": [
+                                "booking"
+                            ],
+                            "description": "Limit result set to products assigned a specific type.",
+                            "type": "string"
+                        },
+                        "sku": {
+                            "required": false,
+                            "description": "Limit result set to products with specific SKU(s). Use commas to separate.",
+                            "type": "string"
+                        },
+                        "featured": {
+                            "required": false,
+                            "description": "Limit result set to featured products.",
+                            "type": "boolean"
+                        },
+                        "category": {
+                            "required": false,
+                            "description": "Limit result set to products assigned a specific category ID.",
+                            "type": "string"
+                        },
+                        "tag": {
+                            "required": false,
+                            "description": "Limit result set to products assigned a specific tag ID.",
+                            "type": "string"
+                        },
+                        "shipping_class": {
+                            "required": false,
+                            "description": "Limit result set to products assigned a specific shipping class ID.",
+                            "type": "string"
+                        },
+                        "attribute": {
+                            "required": false,
+                            "description": "Limit result set to products with a specific attribute. Use the taxonomy name/attribute slug.",
+                            "type": "string"
+                        },
+                        "attribute_term": {
+                            "required": false,
+                            "description": "Limit result set to products with a specific attribute term ID (required an assigned attribute).",
+                            "type": "string"
+                        },
+                        "tax_class": {
+                            "required": false,
+                            "enum": [
+                                "standard",
+                                "reduced-rate",
+                                "zero-rate"
+                            ],
+                            "description": "Limit result set to products with a specific tax class.",
+                            "type": "string"
+                        },
+                        "on_sale": {
+                            "required": false,
+                            "description": "Limit result set to products on sale.",
+                            "type": "boolean"
+                        },
+                        "min_price": {
+                            "required": false,
+                            "description": "Limit result set to products based on a minimum price.",
+                            "type": "string"
+                        },
+                        "max_price": {
+                            "required": false,
+                            "description": "Limit result set to products based on a maximum price.",
+                            "type": "string"
+                        },
+                        "stock_status": {
+                            "required": false,
+                            "enum": [
+                                "instock",
+                                "outofstock",
+                                "onbackorder"
+                            ],
+                            "description": "Limit result set to products with specified stock status.",
+                            "type": "string"
+                        },
+                        "resource": {
+                            "required": false,
+                            "description": "Limit result set to products assigned a specific resource ID.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "POST"
+                    ],
+                    "args": {
+                        "name": {
+                            "required": false,
+                            "description": "Product name.",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "required": false,
+                            "description": "Product slug.",
+                            "type": "string"
+                        },
+                        "date_created": {
+                            "required": false,
+                            "description": "The date the product was created, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "date_created_gmt": {
+                            "required": false,
+                            "description": "The date the product was created, as GMT.",
+                            "type": "date-time"
+                        },
+                        "type": {
+                            "required": false,
+                            "default": "simple",
+                            "enum": [
+                                "simple",
+                                "grouped",
+                                "external",
+                                "variable"
+                            ],
+                            "description": "Product type.",
+                            "type": "string"
+                        },
+                        "status": {
+                            "required": false,
+                            "default": "publish",
+                            "enum": [
+                                "draft",
+                                "pending",
+                                "private",
+                                "publish",
+                                "future"
+                            ],
+                            "description": "Product status (post status).",
+                            "type": "string"
+                        },
+                        "featured": {
+                            "required": false,
+                            "default": false,
+                            "description": "Featured product.",
+                            "type": "boolean"
+                        },
+                        "catalog_visibility": {
+                            "required": false,
+                            "default": "visible",
+                            "enum": [
+                                "visible",
+                                "catalog",
+                                "search",
+                                "hidden"
+                            ],
+                            "description": "Catalog visibility.",
+                            "type": "string"
+                        },
+                        "description": {
+                            "required": false,
+                            "description": "Product description.",
+                            "type": "string"
+                        },
+                        "short_description": {
+                            "required": false,
+                            "description": "Product short description.",
+                            "type": "string"
+                        },
+                        "sku": {
+                            "required": false,
+                            "description": "Unique identifier.",
+                            "type": "string"
+                        },
+                        "regular_price": {
+                            "required": false,
+                            "description": "Product regular price.",
+                            "type": "string"
+                        },
+                        "sale_price": {
+                            "required": false,
+                            "description": "Product sale price.",
+                            "type": "string"
+                        },
+                        "date_on_sale_from": {
+                            "required": false,
+                            "description": "Start date of sale price, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "date_on_sale_from_gmt": {
+                            "required": false,
+                            "description": "Start date of sale price, as GMT.",
+                            "type": "date-time"
+                        },
+                        "date_on_sale_to": {
+                            "required": false,
+                            "description": "End date of sale price, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "date_on_sale_to_gmt": {
+                            "required": false,
+                            "description": "End date of sale price, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "virtual": {
+                            "required": false,
+                            "default": false,
+                            "description": "If the product is virtual.",
+                            "type": "boolean"
+                        },
+                        "downloadable": {
+                            "required": false,
+                            "default": false,
+                            "description": "If the product is downloadable.",
+                            "type": "boolean"
+                        },
+                        "downloads": {
+                            "required": false,
+                            "description": "List of downloadable files.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "File ID.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "File name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "file": {
+                                        "description": "File URL.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "download_limit": {
+                            "required": false,
+                            "default": -1,
+                            "description": "Number of times downloadable files can be downloaded after purchase.",
+                            "type": "integer"
+                        },
+                        "download_expiry": {
+                            "required": false,
+                            "default": -1,
+                            "description": "Number of days until access to downloadable files expires.",
+                            "type": "integer"
+                        },
+                        "external_url": {
+                            "required": false,
+                            "description": "Product external URL. Only for external products.",
+                            "type": "string"
+                        },
+                        "button_text": {
+                            "required": false,
+                            "description": "Product external button text. Only for external products.",
+                            "type": "string"
+                        },
+                        "tax_status": {
+                            "required": false,
+                            "default": "taxable",
+                            "enum": [
+                                "taxable",
+                                "shipping",
+                                "none"
+                            ],
+                            "description": "Tax status.",
+                            "type": "string"
+                        },
+                        "tax_class": {
+                            "required": false,
+                            "description": "Tax class.",
+                            "type": "string"
+                        },
+                        "manage_stock": {
+                            "required": false,
+                            "default": false,
+                            "description": "Stock management at product level.",
+                            "type": "boolean"
+                        },
+                        "stock_quantity": {
+                            "required": false,
+                            "description": "Stock quantity.",
+                            "type": "integer"
+                        },
+                        "stock_status": {
+                            "required": false,
+                            "default": "instock",
+                            "enum": [
+                                "instock",
+                                "outofstock",
+                                "onbackorder"
+                            ],
+                            "description": "Controls the stock status of the product.",
+                            "type": "string"
+                        },
+                        "backorders": {
+                            "required": false,
+                            "default": "no",
+                            "enum": [
+                                "no",
+                                "notify",
+                                "yes"
+                            ],
+                            "description": "If managing stock, this controls if backorders are allowed.",
+                            "type": "string"
+                        },
+                        "sold_individually": {
+                            "required": false,
+                            "default": false,
+                            "description": "Allow one item to be bought in a single order.",
+                            "type": "boolean"
+                        },
+                        "weight": {
+                            "required": false,
+                            "description": "Product weight (oz).",
+                            "type": "string"
+                        },
+                        "dimensions": {
+                            "required": false,
+                            "description": "Product dimensions.",
+                            "type": "object"
+                        },
+                        "shipping_class": {
+                            "required": false,
+                            "description": "Shipping class slug.",
+                            "type": "string"
+                        },
+                        "reviews_allowed": {
+                            "required": false,
+                            "default": true,
+                            "description": "Allow reviews.",
+                            "type": "boolean"
+                        },
+                        "upsell_ids": {
+                            "required": false,
+                            "description": "List of up-sell products IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "cross_sell_ids": {
+                            "required": false,
+                            "description": "List of cross-sell products IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "parent_id": {
+                            "required": false,
+                            "description": "Product parent ID.",
+                            "type": "integer"
+                        },
+                        "purchase_note": {
+                            "required": false,
+                            "description": "Optional note to send the customer after purchase.",
+                            "type": "string"
+                        },
+                        "categories": {
+                            "required": false,
+                            "description": "List of categories.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Category ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Category name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "slug": {
+                                        "description": "Category slug.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    }
+                                }
+                            }
+                        },
+                        "tags": {
+                            "required": false,
+                            "description": "List of tags.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Tag ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Tag name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "slug": {
+                                        "description": "Tag slug.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    }
+                                }
+                            }
+                        },
+                        "images": {
+                            "required": false,
+                            "description": "List of images.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Image ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "date_created": {
+                                        "description": "The date the image was created, in the site's timezone.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "date_created_gmt": {
+                                        "description": "The date the image was created, as GMT.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "date_modified": {
+                                        "description": "The date the image was last modified, in the site's timezone.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "date_modified_gmt": {
+                                        "description": "The date the image was last modified, as GMT.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "src": {
+                                        "description": "Image URL.",
+                                        "type": "string",
+                                        "format": "uri",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Image name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "alt": {
+                                        "description": "Image alternative text.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "attributes": {
+                            "required": false,
+                            "description": "List of attributes.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Attribute ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Attribute name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "position": {
+                                        "description": "Attribute position.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "visible": {
+                                        "description": "Define if the attribute is visible on the \"Additional information\" tab in the product's page.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "variation": {
+                                        "description": "Define if the attribute can be used as variation.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "options": {
+                                        "description": "List of available term names of the attribute.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "default_attributes": {
+                            "required": false,
+                            "description": "Defaults variation attributes.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Attribute ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Attribute name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "option": {
+                                        "description": "Selected attribute term name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "menu_order": {
+                            "required": false,
+                            "description": "Menu order, used to custom sort products.",
+                            "type": "integer"
+                        },
+                        "meta_data": {
+                            "required": false,
+                            "description": "Meta data.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Meta ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "key": {
+                                        "description": "Meta key.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "value": {
+                                        "description": "Meta value.",
+                                        "type": "mixed",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "apply_adjacent_buffer": {
+                            "required": false,
+                            "description": "Apply adjacent buffers.",
+                            "type": "boolean"
+                        },
+                        "availability": {
+                            "required": false,
+                            "description": "Availability rules defined on product level.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "description": "Availability type.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from": {
+                                        "description": "Starting month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to": {
+                                        "description": "Ending month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from_date": {
+                                        "description": "Starting day if 'from' is a time.,",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to_date": {
+                                        "description": "Ending day if 'to' is a time.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "bookable": {
+                                        "description": "Rule marks things as bookable or not, 'yes' or 'no'.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "priority": {
+                                        "description": "Priority of rule.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "block_cost": {
+                            "required": false,
+                            "description": "Base cost of each block.",
+                            "type": "number"
+                        },
+                        "buffer_period": {
+                            "required": false,
+                            "description": "Required buffer Period between bookings.",
+                            "type": "integer"
+                        },
+                        "calendar_display_mode": {
+                            "required": false,
+                            "enum": [
+                                "",
+                                "always_visible"
+                            ],
+                            "description": "How the calendar will display on the product page. Valid values are 'always_visible' or ''.",
+                            "type": "string"
+                        },
+                        "cancel_limit_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "minute"
+                            ],
+                            "description": "The unit limit is defined in. Valid values are 'month', 'day', 'hour', and 'minute'.",
+                            "type": "string"
+                        },
+                        "cancel_limit": {
+                            "required": false,
+                            "description": "How many limit units in advance users are allowed to cancel bookings.",
+                            "type": "integer"
+                        },
+                        "check_start_block_only": {
+                            "required": false,
+                            "description": "If true only the first block in checked for availability.",
+                            "type": "boolean"
+                        },
+                        "cost": {
+                            "required": false,
+                            "description": "Product cost.",
+                            "type": "number"
+                        },
+                        "default_date_availability": {
+                            "required": false,
+                            "enum": [
+                                "",
+                                "available"
+                            ],
+                            "description": "If 'available' product is bookable unless made unbookable by availability rules.",
+                            "type": "string"
+                        },
+                        "display_cost": {
+                            "required": false,
+                            "description": "Product cost displayed.",
+                            "type": "string"
+                        },
+                        "duration_type": {
+                            "required": false,
+                            "enum": [
+                                "customer",
+                                "fixed"
+                            ],
+                            "description": "How duration is defined.",
+                            "type": "string"
+                        },
+                        "duration_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "minute"
+                            ],
+                            "description": "Unit duration is defined in.",
+                            "type": "string"
+                        },
+                        "duration": {
+                            "required": false,
+                            "description": "Size in duration units of each block.",
+                            "type": "integer"
+                        },
+                        "enable_range_picker": {
+                            "required": false,
+                            "description": "Customer can pick a range of days on calendar.",
+                            "type": "boolean"
+                        },
+                        "first_block_time": {
+                            "required": false,
+                            "description": "Time of day first block starts.",
+                            "type": "string"
+                        },
+                        "has_person_cost_multiplier": {
+                            "required": false,
+                            "description": "Will multiply cost by number of persons.",
+                            "type": "boolean"
+                        },
+                        "has_person_qty_multiplier": {
+                            "required": false,
+                            "description": "Each person counts as a booking.",
+                            "type": "boolean"
+                        },
+                        "has_person_types": {
+                            "required": false,
+                            "description": "Product has different types of persons.",
+                            "type": "boolean"
+                        },
+                        "has_persons": {
+                            "required": false,
+                            "description": "Product has persons defined.",
+                            "type": "boolean"
+                        },
+                        "has_resources": {
+                            "required": false,
+                            "description": "Product has resources defined.",
+                            "type": "boolean"
+                        },
+                        "has_restricted_days": {
+                            "required": false,
+                            "description": "Product has restricted days.",
+                            "type": "boolean"
+                        },
+                        "max_date": {
+                            "required": false,
+                            "description": "Max date value combined with max date unit.",
+                            "type": "string"
+                        },
+                        "max_date_value": {
+                            "required": false,
+                            "description": "Max amount af max_date_units into the future a block is bookable.",
+                            "type": "integer"
+                        },
+                        "max_date_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "week"
+                            ],
+                            "description": "Units for max_date_value.",
+                            "type": "string"
+                        },
+                        "min_date": {
+                            "required": false,
+                            "description": "Min date value combined with min date unit.",
+                            "type": "string"
+                        },
+                        "min_date_value": {
+                            "required": false,
+                            "description": "Min amount af min_date_units into the future a block is bookable.",
+                            "type": "integer"
+                        },
+                        "min_date_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "week"
+                            ],
+                            "description": "Units for min_date_value.",
+                            "type": "string"
+                        },
+                        "max_duration": {
+                            "required": false,
+                            "description": "Max duration of units a booking can be.",
+                            "type": "integer"
+                        },
+                        "min_duration": {
+                            "required": false,
+                            "description": "Min duration of units a booking can be.",
+                            "type": "integer"
+                        },
+                        "max_persons": {
+                            "required": false,
+                            "description": "Max persons which can be booked per booking.",
+                            "type": "integer"
+                        },
+                        "min_persons": {
+                            "required": false,
+                            "description": "Min persons which can be booked per booking.",
+                            "type": "integer"
+                        },
+                        "pricing": {
+                            "required": false,
+                            "description": "Pricing rules.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "description": "Date range type.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from": {
+                                        "description": "Starting month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to": {
+                                        "description": "Ending month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from_date": {
+                                        "description": "Starting day if 'from' is a time.,",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to_date": {
+                                        "description": "Ending day if 'to' is a time.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "modifier": {
+                                        "description": "How the block cost should be modified.",
+                                        "type": "string",
+                                        "enum": [
+                                            "+",
+                                            "minus",
+                                            "times",
+                                            "divide",
+                                            "equals"
+                                        ],
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "cost": {
+                                        "description": "Block cost.",
+                                        "type": "number",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "base_modifier": {
+                                        "description": "How the base cost should be modified.",
+                                        "type": "string",
+                                        "enum": [
+                                            "+",
+                                            "minus",
+                                            "times",
+                                            "divide",
+                                            "equals"
+                                        ],
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "base_cost": {
+                                        "description": "Base cost.",
+                                        "type": "number",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "priority": {
+                                        "description": "Priority of rule.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "qty": {
+                            "required": false,
+                            "description": "Max bookings per block.",
+                            "type": "integer"
+                        },
+                        "requires_confirmation": {
+                            "required": false,
+                            "description": "Booking require confirmation.",
+                            "type": "boolean"
+                        },
+                        "restricted_days": {
+                            "required": false,
+                            "description": "Days days of week bookings cannot start. Array of numeric day indexes with 0 being Sunday.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "enum": [
+                                    0,
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    6
+                                ]
+                            }
+                        },
+                        "can_be_cancelled": {
+                            "required": false,
+                            "description": "Booking can be cancelled by customer.",
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1/products"
             }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/coupons"
-      }
-    },
-    "/wc/v1/coupons/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
         },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "code": {
-              "required": false,
-              "description": "Coupon code."
-            },
-            "description": {
-              "required": false,
-              "description": "Coupon description."
-            },
-            "discount_type": {
-              "required": false,
-              "enum": [
-                "fixed_cart",
-                "percent",
-                "fixed_product",
-                "percent_product"
-              ],
-              "description": "Determines the type of discount that will be applied."
-            },
-            "amount": {
-              "required": false,
-              "description": "The amount of discount."
-            },
-            "expiry_date": {
-              "required": false,
-              "description": "UTC DateTime when the coupon expires."
-            },
-            "individual_use": {
-              "required": false,
-              "description": "Whether coupon can only be used individually."
-            },
-            "product_ids": {
-              "required": false,
-              "description": "List of product ID's the coupon can be used on."
-            },
-            "exclude_product_ids": {
-              "required": false,
-              "description": "List of product ID's the coupon cannot be used on."
-            },
-            "usage_limit": {
-              "required": false,
-              "description": "How many times the coupon can be used."
-            },
-            "usage_limit_per_user": {
-              "required": false,
-              "description": "How many times the coupon can be used per customer."
-            },
-            "limit_usage_to_x_items": {
-              "required": false,
-              "description": "Max number of items in the cart the coupon can be applied to."
-            },
-            "free_shipping": {
-              "required": false,
-              "description": "Define if can be applied for free shipping."
-            },
-            "product_categories": {
-              "required": false,
-              "description": "List of category ID's the coupon applies to."
-            },
-            "excluded_product_categories": {
-              "required": false,
-              "description": "List of category ID's the coupon does not apply to."
-            },
-            "exclude_sale_items": {
-              "required": false,
-              "description": "Define if should not apply when have sale items."
-            },
-            "minimum_amount": {
-              "required": false,
-              "description": "Minimum order amount that needs to be in the cart before coupon applies."
-            },
-            "maximum_amount": {
-              "required": false,
-              "description": "Maximum order amount allowed when using the coupon."
-            },
-            "email_restrictions": {
-              "required": false,
-              "description": "List of email addresses that can use this coupon."
-            }
-          }
+        "/wc-bookings/v1/products/(?P<id>[\\d]+)": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "context": {
+                            "required": false,
+                            "default": "view",
+                            "enum": [
+                                "view",
+                                "edit"
+                            ],
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "POST",
+                        "PUT",
+                        "PATCH"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "name": {
+                            "required": false,
+                            "description": "Product name.",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "required": false,
+                            "description": "Product slug.",
+                            "type": "string"
+                        },
+                        "date_created": {
+                            "required": false,
+                            "description": "The date the product was created, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "date_created_gmt": {
+                            "required": false,
+                            "description": "The date the product was created, as GMT.",
+                            "type": "date-time"
+                        },
+                        "type": {
+                            "required": false,
+                            "enum": [
+                                "simple",
+                                "grouped",
+                                "external",
+                                "variable"
+                            ],
+                            "description": "Product type.",
+                            "type": "string"
+                        },
+                        "status": {
+                            "required": false,
+                            "enum": [
+                                "draft",
+                                "pending",
+                                "private",
+                                "publish",
+                                "future"
+                            ],
+                            "description": "Product status (post status).",
+                            "type": "string"
+                        },
+                        "featured": {
+                            "required": false,
+                            "description": "Featured product.",
+                            "type": "boolean"
+                        },
+                        "catalog_visibility": {
+                            "required": false,
+                            "enum": [
+                                "visible",
+                                "catalog",
+                                "search",
+                                "hidden"
+                            ],
+                            "description": "Catalog visibility.",
+                            "type": "string"
+                        },
+                        "description": {
+                            "required": false,
+                            "description": "Product description.",
+                            "type": "string"
+                        },
+                        "short_description": {
+                            "required": false,
+                            "description": "Product short description.",
+                            "type": "string"
+                        },
+                        "sku": {
+                            "required": false,
+                            "description": "Unique identifier.",
+                            "type": "string"
+                        },
+                        "regular_price": {
+                            "required": false,
+                            "description": "Product regular price.",
+                            "type": "string"
+                        },
+                        "sale_price": {
+                            "required": false,
+                            "description": "Product sale price.",
+                            "type": "string"
+                        },
+                        "date_on_sale_from": {
+                            "required": false,
+                            "description": "Start date of sale price, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "date_on_sale_from_gmt": {
+                            "required": false,
+                            "description": "Start date of sale price, as GMT.",
+                            "type": "date-time"
+                        },
+                        "date_on_sale_to": {
+                            "required": false,
+                            "description": "End date of sale price, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "date_on_sale_to_gmt": {
+                            "required": false,
+                            "description": "End date of sale price, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "virtual": {
+                            "required": false,
+                            "description": "If the product is virtual.",
+                            "type": "boolean"
+                        },
+                        "downloadable": {
+                            "required": false,
+                            "description": "If the product is downloadable.",
+                            "type": "boolean"
+                        },
+                        "downloads": {
+                            "required": false,
+                            "description": "List of downloadable files.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "File ID.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "File name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "file": {
+                                        "description": "File URL.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "download_limit": {
+                            "required": false,
+                            "description": "Number of times downloadable files can be downloaded after purchase.",
+                            "type": "integer"
+                        },
+                        "download_expiry": {
+                            "required": false,
+                            "description": "Number of days until access to downloadable files expires.",
+                            "type": "integer"
+                        },
+                        "external_url": {
+                            "required": false,
+                            "description": "Product external URL. Only for external products.",
+                            "type": "string"
+                        },
+                        "button_text": {
+                            "required": false,
+                            "description": "Product external button text. Only for external products.",
+                            "type": "string"
+                        },
+                        "tax_status": {
+                            "required": false,
+                            "enum": [
+                                "taxable",
+                                "shipping",
+                                "none"
+                            ],
+                            "description": "Tax status.",
+                            "type": "string"
+                        },
+                        "tax_class": {
+                            "required": false,
+                            "description": "Tax class.",
+                            "type": "string"
+                        },
+                        "manage_stock": {
+                            "required": false,
+                            "description": "Stock management at product level.",
+                            "type": "boolean"
+                        },
+                        "stock_quantity": {
+                            "required": false,
+                            "description": "Stock quantity.",
+                            "type": "integer"
+                        },
+                        "stock_status": {
+                            "required": false,
+                            "enum": [
+                                "instock",
+                                "outofstock",
+                                "onbackorder"
+                            ],
+                            "description": "Controls the stock status of the product.",
+                            "type": "string"
+                        },
+                        "backorders": {
+                            "required": false,
+                            "enum": [
+                                "no",
+                                "notify",
+                                "yes"
+                            ],
+                            "description": "If managing stock, this controls if backorders are allowed.",
+                            "type": "string"
+                        },
+                        "sold_individually": {
+                            "required": false,
+                            "description": "Allow one item to be bought in a single order.",
+                            "type": "boolean"
+                        },
+                        "weight": {
+                            "required": false,
+                            "description": "Product weight (oz).",
+                            "type": "string"
+                        },
+                        "dimensions": {
+                            "required": false,
+                            "description": "Product dimensions.",
+                            "type": "object"
+                        },
+                        "shipping_class": {
+                            "required": false,
+                            "description": "Shipping class slug.",
+                            "type": "string"
+                        },
+                        "reviews_allowed": {
+                            "required": false,
+                            "description": "Allow reviews.",
+                            "type": "boolean"
+                        },
+                        "upsell_ids": {
+                            "required": false,
+                            "description": "List of up-sell products IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "cross_sell_ids": {
+                            "required": false,
+                            "description": "List of cross-sell products IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "parent_id": {
+                            "required": false,
+                            "description": "Product parent ID.",
+                            "type": "integer"
+                        },
+                        "purchase_note": {
+                            "required": false,
+                            "description": "Optional note to send the customer after purchase.",
+                            "type": "string"
+                        },
+                        "categories": {
+                            "required": false,
+                            "description": "List of categories.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Category ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Category name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "slug": {
+                                        "description": "Category slug.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    }
+                                }
+                            }
+                        },
+                        "tags": {
+                            "required": false,
+                            "description": "List of tags.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Tag ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Tag name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "slug": {
+                                        "description": "Tag slug.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    }
+                                }
+                            }
+                        },
+                        "images": {
+                            "required": false,
+                            "description": "List of images.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Image ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "date_created": {
+                                        "description": "The date the image was created, in the site's timezone.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "date_created_gmt": {
+                                        "description": "The date the image was created, as GMT.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "date_modified": {
+                                        "description": "The date the image was last modified, in the site's timezone.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "date_modified_gmt": {
+                                        "description": "The date the image was last modified, as GMT.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "src": {
+                                        "description": "Image URL.",
+                                        "type": "string",
+                                        "format": "uri",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Image name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "alt": {
+                                        "description": "Image alternative text.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "attributes": {
+                            "required": false,
+                            "description": "List of attributes.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Attribute ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Attribute name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "position": {
+                                        "description": "Attribute position.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "visible": {
+                                        "description": "Define if the attribute is visible on the \"Additional information\" tab in the product's page.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "variation": {
+                                        "description": "Define if the attribute can be used as variation.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "options": {
+                                        "description": "List of available term names of the attribute.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "default_attributes": {
+                            "required": false,
+                            "description": "Defaults variation attributes.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Attribute ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Attribute name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "option": {
+                                        "description": "Selected attribute term name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "menu_order": {
+                            "required": false,
+                            "description": "Menu order, used to custom sort products.",
+                            "type": "integer"
+                        },
+                        "meta_data": {
+                            "required": false,
+                            "description": "Meta data.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Meta ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "key": {
+                                        "description": "Meta key.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "value": {
+                                        "description": "Meta value.",
+                                        "type": "mixed",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "apply_adjacent_buffer": {
+                            "required": false,
+                            "description": "Apply adjacent buffers.",
+                            "type": "boolean"
+                        },
+                        "availability": {
+                            "required": false,
+                            "description": "Availability rules defined on product level.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "description": "Availability type.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from": {
+                                        "description": "Starting month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to": {
+                                        "description": "Ending month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from_date": {
+                                        "description": "Starting day if 'from' is a time.,",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to_date": {
+                                        "description": "Ending day if 'to' is a time.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "bookable": {
+                                        "description": "Rule marks things as bookable or not, 'yes' or 'no'.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "priority": {
+                                        "description": "Priority of rule.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "block_cost": {
+                            "required": false,
+                            "description": "Base cost of each block.",
+                            "type": "number"
+                        },
+                        "buffer_period": {
+                            "required": false,
+                            "description": "Required buffer Period between bookings.",
+                            "type": "integer"
+                        },
+                        "calendar_display_mode": {
+                            "required": false,
+                            "enum": [
+                                "",
+                                "always_visible"
+                            ],
+                            "description": "How the calendar will display on the product page. Valid values are 'always_visible' or ''.",
+                            "type": "string"
+                        },
+                        "cancel_limit_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "minute"
+                            ],
+                            "description": "The unit limit is defined in. Valid values are 'month', 'day', 'hour', and 'minute'.",
+                            "type": "string"
+                        },
+                        "cancel_limit": {
+                            "required": false,
+                            "description": "How many limit units in advance users are allowed to cancel bookings.",
+                            "type": "integer"
+                        },
+                        "check_start_block_only": {
+                            "required": false,
+                            "description": "If true only the first block in checked for availability.",
+                            "type": "boolean"
+                        },
+                        "cost": {
+                            "required": false,
+                            "description": "Product cost.",
+                            "type": "number"
+                        },
+                        "default_date_availability": {
+                            "required": false,
+                            "enum": [
+                                "",
+                                "available"
+                            ],
+                            "description": "If 'available' product is bookable unless made unbookable by availability rules.",
+                            "type": "string"
+                        },
+                        "display_cost": {
+                            "required": false,
+                            "description": "Product cost displayed.",
+                            "type": "string"
+                        },
+                        "duration_type": {
+                            "required": false,
+                            "enum": [
+                                "customer",
+                                "fixed"
+                            ],
+                            "description": "How duration is defined.",
+                            "type": "string"
+                        },
+                        "duration_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "minute"
+                            ],
+                            "description": "Unit duration is defined in.",
+                            "type": "string"
+                        },
+                        "duration": {
+                            "required": false,
+                            "description": "Size in duration units of each block.",
+                            "type": "integer"
+                        },
+                        "enable_range_picker": {
+                            "required": false,
+                            "description": "Customer can pick a range of days on calendar.",
+                            "type": "boolean"
+                        },
+                        "first_block_time": {
+                            "required": false,
+                            "description": "Time of day first block starts.",
+                            "type": "string"
+                        },
+                        "has_person_cost_multiplier": {
+                            "required": false,
+                            "description": "Will multiply cost by number of persons.",
+                            "type": "boolean"
+                        },
+                        "has_person_qty_multiplier": {
+                            "required": false,
+                            "description": "Each person counts as a booking.",
+                            "type": "boolean"
+                        },
+                        "has_person_types": {
+                            "required": false,
+                            "description": "Product has different types of persons.",
+                            "type": "boolean"
+                        },
+                        "has_persons": {
+                            "required": false,
+                            "description": "Product has persons defined.",
+                            "type": "boolean"
+                        },
+                        "has_resources": {
+                            "required": false,
+                            "description": "Product has resources defined.",
+                            "type": "boolean"
+                        },
+                        "has_restricted_days": {
+                            "required": false,
+                            "description": "Product has restricted days.",
+                            "type": "boolean"
+                        },
+                        "max_date": {
+                            "required": false,
+                            "description": "Max date value combined with max date unit.",
+                            "type": "string"
+                        },
+                        "max_date_value": {
+                            "required": false,
+                            "description": "Max amount af max_date_units into the future a block is bookable.",
+                            "type": "integer"
+                        },
+                        "max_date_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "week"
+                            ],
+                            "description": "Units for max_date_value.",
+                            "type": "string"
+                        },
+                        "min_date": {
+                            "required": false,
+                            "description": "Min date value combined with min date unit.",
+                            "type": "string"
+                        },
+                        "min_date_value": {
+                            "required": false,
+                            "description": "Min amount af min_date_units into the future a block is bookable.",
+                            "type": "integer"
+                        },
+                        "min_date_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "week"
+                            ],
+                            "description": "Units for min_date_value.",
+                            "type": "string"
+                        },
+                        "max_duration": {
+                            "required": false,
+                            "description": "Max duration of units a booking can be.",
+                            "type": "integer"
+                        },
+                        "min_duration": {
+                            "required": false,
+                            "description": "Min duration of units a booking can be.",
+                            "type": "integer"
+                        },
+                        "max_persons": {
+                            "required": false,
+                            "description": "Max persons which can be booked per booking.",
+                            "type": "integer"
+                        },
+                        "min_persons": {
+                            "required": false,
+                            "description": "Min persons which can be booked per booking.",
+                            "type": "integer"
+                        },
+                        "pricing": {
+                            "required": false,
+                            "description": "Pricing rules.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "description": "Date range type.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from": {
+                                        "description": "Starting month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to": {
+                                        "description": "Ending month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from_date": {
+                                        "description": "Starting day if 'from' is a time.,",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to_date": {
+                                        "description": "Ending day if 'to' is a time.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "modifier": {
+                                        "description": "How the block cost should be modified.",
+                                        "type": "string",
+                                        "enum": [
+                                            "+",
+                                            "minus",
+                                            "times",
+                                            "divide",
+                                            "equals"
+                                        ],
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "cost": {
+                                        "description": "Block cost.",
+                                        "type": "number",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "base_modifier": {
+                                        "description": "How the base cost should be modified.",
+                                        "type": "string",
+                                        "enum": [
+                                            "+",
+                                            "minus",
+                                            "times",
+                                            "divide",
+                                            "equals"
+                                        ],
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "base_cost": {
+                                        "description": "Base cost.",
+                                        "type": "number",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "priority": {
+                                        "description": "Priority of rule.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "qty": {
+                            "required": false,
+                            "description": "Max bookings per block.",
+                            "type": "integer"
+                        },
+                        "requires_confirmation": {
+                            "required": false,
+                            "description": "Booking require confirmation.",
+                            "type": "boolean"
+                        },
+                        "restricted_days": {
+                            "required": false,
+                            "description": "Days days of week bookings cannot start. Array of numeric day indexes with 0 being Sunday.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "enum": [
+                                    0,
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    6
+                                ]
+                            }
+                        },
+                        "can_be_cancelled": {
+                            "required": false,
+                            "description": "Booking can be cancelled by customer.",
+                            "type": "boolean"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "DELETE"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "force": {
+                            "required": false,
+                            "default": false,
+                            "description": "Whether to bypass trash and force deletion.",
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ]
         },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Whether to bypass trash and force deletion."
+        "/wc-bookings/v1/products/batch": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "POST",
+                "PUT",
+                "PATCH"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "POST",
+                        "PUT",
+                        "PATCH"
+                    ],
+                    "args": {
+                        "name": {
+                            "required": false,
+                            "description": "Product name.",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "required": false,
+                            "description": "Product slug.",
+                            "type": "string"
+                        },
+                        "date_created": {
+                            "required": false,
+                            "description": "The date the product was created, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "date_created_gmt": {
+                            "required": false,
+                            "description": "The date the product was created, as GMT.",
+                            "type": "date-time"
+                        },
+                        "type": {
+                            "required": false,
+                            "enum": [
+                                "simple",
+                                "grouped",
+                                "external",
+                                "variable"
+                            ],
+                            "description": "Product type.",
+                            "type": "string"
+                        },
+                        "status": {
+                            "required": false,
+                            "enum": [
+                                "draft",
+                                "pending",
+                                "private",
+                                "publish",
+                                "future"
+                            ],
+                            "description": "Product status (post status).",
+                            "type": "string"
+                        },
+                        "featured": {
+                            "required": false,
+                            "description": "Featured product.",
+                            "type": "boolean"
+                        },
+                        "catalog_visibility": {
+                            "required": false,
+                            "enum": [
+                                "visible",
+                                "catalog",
+                                "search",
+                                "hidden"
+                            ],
+                            "description": "Catalog visibility.",
+                            "type": "string"
+                        },
+                        "description": {
+                            "required": false,
+                            "description": "Product description.",
+                            "type": "string"
+                        },
+                        "short_description": {
+                            "required": false,
+                            "description": "Product short description.",
+                            "type": "string"
+                        },
+                        "sku": {
+                            "required": false,
+                            "description": "Unique identifier.",
+                            "type": "string"
+                        },
+                        "regular_price": {
+                            "required": false,
+                            "description": "Product regular price.",
+                            "type": "string"
+                        },
+                        "sale_price": {
+                            "required": false,
+                            "description": "Product sale price.",
+                            "type": "string"
+                        },
+                        "date_on_sale_from": {
+                            "required": false,
+                            "description": "Start date of sale price, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "date_on_sale_from_gmt": {
+                            "required": false,
+                            "description": "Start date of sale price, as GMT.",
+                            "type": "date-time"
+                        },
+                        "date_on_sale_to": {
+                            "required": false,
+                            "description": "End date of sale price, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "date_on_sale_to_gmt": {
+                            "required": false,
+                            "description": "End date of sale price, in the site's timezone.",
+                            "type": "date-time"
+                        },
+                        "virtual": {
+                            "required": false,
+                            "description": "If the product is virtual.",
+                            "type": "boolean"
+                        },
+                        "downloadable": {
+                            "required": false,
+                            "description": "If the product is downloadable.",
+                            "type": "boolean"
+                        },
+                        "downloads": {
+                            "required": false,
+                            "description": "List of downloadable files.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "File ID.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "File name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "file": {
+                                        "description": "File URL.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "download_limit": {
+                            "required": false,
+                            "description": "Number of times downloadable files can be downloaded after purchase.",
+                            "type": "integer"
+                        },
+                        "download_expiry": {
+                            "required": false,
+                            "description": "Number of days until access to downloadable files expires.",
+                            "type": "integer"
+                        },
+                        "external_url": {
+                            "required": false,
+                            "description": "Product external URL. Only for external products.",
+                            "type": "string"
+                        },
+                        "button_text": {
+                            "required": false,
+                            "description": "Product external button text. Only for external products.",
+                            "type": "string"
+                        },
+                        "tax_status": {
+                            "required": false,
+                            "enum": [
+                                "taxable",
+                                "shipping",
+                                "none"
+                            ],
+                            "description": "Tax status.",
+                            "type": "string"
+                        },
+                        "tax_class": {
+                            "required": false,
+                            "description": "Tax class.",
+                            "type": "string"
+                        },
+                        "manage_stock": {
+                            "required": false,
+                            "description": "Stock management at product level.",
+                            "type": "boolean"
+                        },
+                        "stock_quantity": {
+                            "required": false,
+                            "description": "Stock quantity.",
+                            "type": "integer"
+                        },
+                        "stock_status": {
+                            "required": false,
+                            "enum": [
+                                "instock",
+                                "outofstock",
+                                "onbackorder"
+                            ],
+                            "description": "Controls the stock status of the product.",
+                            "type": "string"
+                        },
+                        "backorders": {
+                            "required": false,
+                            "enum": [
+                                "no",
+                                "notify",
+                                "yes"
+                            ],
+                            "description": "If managing stock, this controls if backorders are allowed.",
+                            "type": "string"
+                        },
+                        "sold_individually": {
+                            "required": false,
+                            "description": "Allow one item to be bought in a single order.",
+                            "type": "boolean"
+                        },
+                        "weight": {
+                            "required": false,
+                            "description": "Product weight (oz).",
+                            "type": "string"
+                        },
+                        "dimensions": {
+                            "required": false,
+                            "description": "Product dimensions.",
+                            "type": "object"
+                        },
+                        "shipping_class": {
+                            "required": false,
+                            "description": "Shipping class slug.",
+                            "type": "string"
+                        },
+                        "reviews_allowed": {
+                            "required": false,
+                            "description": "Allow reviews.",
+                            "type": "boolean"
+                        },
+                        "upsell_ids": {
+                            "required": false,
+                            "description": "List of up-sell products IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "cross_sell_ids": {
+                            "required": false,
+                            "description": "List of cross-sell products IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "parent_id": {
+                            "required": false,
+                            "description": "Product parent ID.",
+                            "type": "integer"
+                        },
+                        "purchase_note": {
+                            "required": false,
+                            "description": "Optional note to send the customer after purchase.",
+                            "type": "string"
+                        },
+                        "categories": {
+                            "required": false,
+                            "description": "List of categories.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Category ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Category name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "slug": {
+                                        "description": "Category slug.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    }
+                                }
+                            }
+                        },
+                        "tags": {
+                            "required": false,
+                            "description": "List of tags.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Tag ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Tag name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "slug": {
+                                        "description": "Tag slug.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    }
+                                }
+                            }
+                        },
+                        "images": {
+                            "required": false,
+                            "description": "List of images.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Image ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "date_created": {
+                                        "description": "The date the image was created, in the site's timezone.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "date_created_gmt": {
+                                        "description": "The date the image was created, as GMT.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "date_modified": {
+                                        "description": "The date the image was last modified, in the site's timezone.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "date_modified_gmt": {
+                                        "description": "The date the image was last modified, as GMT.",
+                                        "type": "date-time",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "src": {
+                                        "description": "Image URL.",
+                                        "type": "string",
+                                        "format": "uri",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Image name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "alt": {
+                                        "description": "Image alternative text.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "attributes": {
+                            "required": false,
+                            "description": "List of attributes.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Attribute ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Attribute name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "position": {
+                                        "description": "Attribute position.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "visible": {
+                                        "description": "Define if the attribute is visible on the \"Additional information\" tab in the product's page.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "variation": {
+                                        "description": "Define if the attribute can be used as variation.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "options": {
+                                        "description": "List of available term names of the attribute.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "default_attributes": {
+                            "required": false,
+                            "description": "Defaults variation attributes.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Attribute ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "name": {
+                                        "description": "Attribute name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "option": {
+                                        "description": "Selected attribute term name.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "menu_order": {
+                            "required": false,
+                            "description": "Menu order, used to custom sort products.",
+                            "type": "integer"
+                        },
+                        "meta_data": {
+                            "required": false,
+                            "description": "Meta data.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Meta ID.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ],
+                                        "readonly": true
+                                    },
+                                    "key": {
+                                        "description": "Meta key.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "value": {
+                                        "description": "Meta value.",
+                                        "type": "mixed",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "apply_adjacent_buffer": {
+                            "required": false,
+                            "description": "Apply adjacent buffers.",
+                            "type": "boolean"
+                        },
+                        "availability": {
+                            "required": false,
+                            "description": "Availability rules defined on product level.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "description": "Availability type.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from": {
+                                        "description": "Starting month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to": {
+                                        "description": "Ending month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from_date": {
+                                        "description": "Starting day if 'from' is a time.,",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to_date": {
+                                        "description": "Ending day if 'to' is a time.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "bookable": {
+                                        "description": "Rule marks things as bookable or not, 'yes' or 'no'.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "priority": {
+                                        "description": "Priority of rule.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "block_cost": {
+                            "required": false,
+                            "description": "Base cost of each block.",
+                            "type": "number"
+                        },
+                        "buffer_period": {
+                            "required": false,
+                            "description": "Required buffer Period between bookings.",
+                            "type": "integer"
+                        },
+                        "calendar_display_mode": {
+                            "required": false,
+                            "enum": [
+                                "",
+                                "always_visible"
+                            ],
+                            "description": "How the calendar will display on the product page. Valid values are 'always_visible' or ''.",
+                            "type": "string"
+                        },
+                        "cancel_limit_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "minute"
+                            ],
+                            "description": "The unit limit is defined in. Valid values are 'month', 'day', 'hour', and 'minute'.",
+                            "type": "string"
+                        },
+                        "cancel_limit": {
+                            "required": false,
+                            "description": "How many limit units in advance users are allowed to cancel bookings.",
+                            "type": "integer"
+                        },
+                        "check_start_block_only": {
+                            "required": false,
+                            "description": "If true only the first block in checked for availability.",
+                            "type": "boolean"
+                        },
+                        "cost": {
+                            "required": false,
+                            "description": "Product cost.",
+                            "type": "number"
+                        },
+                        "default_date_availability": {
+                            "required": false,
+                            "enum": [
+                                "",
+                                "available"
+                            ],
+                            "description": "If 'available' product is bookable unless made unbookable by availability rules.",
+                            "type": "string"
+                        },
+                        "display_cost": {
+                            "required": false,
+                            "description": "Product cost displayed.",
+                            "type": "string"
+                        },
+                        "duration_type": {
+                            "required": false,
+                            "enum": [
+                                "customer",
+                                "fixed"
+                            ],
+                            "description": "How duration is defined.",
+                            "type": "string"
+                        },
+                        "duration_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "minute"
+                            ],
+                            "description": "Unit duration is defined in.",
+                            "type": "string"
+                        },
+                        "duration": {
+                            "required": false,
+                            "description": "Size in duration units of each block.",
+                            "type": "integer"
+                        },
+                        "enable_range_picker": {
+                            "required": false,
+                            "description": "Customer can pick a range of days on calendar.",
+                            "type": "boolean"
+                        },
+                        "first_block_time": {
+                            "required": false,
+                            "description": "Time of day first block starts.",
+                            "type": "string"
+                        },
+                        "has_person_cost_multiplier": {
+                            "required": false,
+                            "description": "Will multiply cost by number of persons.",
+                            "type": "boolean"
+                        },
+                        "has_person_qty_multiplier": {
+                            "required": false,
+                            "description": "Each person counts as a booking.",
+                            "type": "boolean"
+                        },
+                        "has_person_types": {
+                            "required": false,
+                            "description": "Product has different types of persons.",
+                            "type": "boolean"
+                        },
+                        "has_persons": {
+                            "required": false,
+                            "description": "Product has persons defined.",
+                            "type": "boolean"
+                        },
+                        "has_resources": {
+                            "required": false,
+                            "description": "Product has resources defined.",
+                            "type": "boolean"
+                        },
+                        "has_restricted_days": {
+                            "required": false,
+                            "description": "Product has restricted days.",
+                            "type": "boolean"
+                        },
+                        "max_date": {
+                            "required": false,
+                            "description": "Max date value combined with max date unit.",
+                            "type": "string"
+                        },
+                        "max_date_value": {
+                            "required": false,
+                            "description": "Max amount af max_date_units into the future a block is bookable.",
+                            "type": "integer"
+                        },
+                        "max_date_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "week"
+                            ],
+                            "description": "Units for max_date_value.",
+                            "type": "string"
+                        },
+                        "min_date": {
+                            "required": false,
+                            "description": "Min date value combined with min date unit.",
+                            "type": "string"
+                        },
+                        "min_date_value": {
+                            "required": false,
+                            "description": "Min amount af min_date_units into the future a block is bookable.",
+                            "type": "integer"
+                        },
+                        "min_date_unit": {
+                            "required": false,
+                            "enum": [
+                                "month",
+                                "day",
+                                "hour",
+                                "week"
+                            ],
+                            "description": "Units for min_date_value.",
+                            "type": "string"
+                        },
+                        "max_duration": {
+                            "required": false,
+                            "description": "Max duration of units a booking can be.",
+                            "type": "integer"
+                        },
+                        "min_duration": {
+                            "required": false,
+                            "description": "Min duration of units a booking can be.",
+                            "type": "integer"
+                        },
+                        "max_persons": {
+                            "required": false,
+                            "description": "Max persons which can be booked per booking.",
+                            "type": "integer"
+                        },
+                        "min_persons": {
+                            "required": false,
+                            "description": "Min persons which can be booked per booking.",
+                            "type": "integer"
+                        },
+                        "pricing": {
+                            "required": false,
+                            "description": "Pricing rules.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "description": "Date range type.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from": {
+                                        "description": "Starting month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to": {
+                                        "description": "Ending month/day/week inclusive.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "from_date": {
+                                        "description": "Starting day if 'from' is a time.,",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "to_date": {
+                                        "description": "Ending day if 'to' is a time.",
+                                        "type": "string",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "modifier": {
+                                        "description": "How the block cost should be modified.",
+                                        "type": "string",
+                                        "enum": [
+                                            "+",
+                                            "minus",
+                                            "times",
+                                            "divide",
+                                            "equals"
+                                        ],
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "cost": {
+                                        "description": "Block cost.",
+                                        "type": "number",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "base_modifier": {
+                                        "description": "How the base cost should be modified.",
+                                        "type": "string",
+                                        "enum": [
+                                            "+",
+                                            "minus",
+                                            "times",
+                                            "divide",
+                                            "equals"
+                                        ],
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "base_cost": {
+                                        "description": "Base cost.",
+                                        "type": "number",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    },
+                                    "priority": {
+                                        "description": "Priority of rule.",
+                                        "type": "integer",
+                                        "context": [
+                                            "view",
+                                            "edit"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "qty": {
+                            "required": false,
+                            "description": "Max bookings per block.",
+                            "type": "integer"
+                        },
+                        "requires_confirmation": {
+                            "required": false,
+                            "description": "Booking require confirmation.",
+                            "type": "boolean"
+                        },
+                        "restricted_days": {
+                            "required": false,
+                            "description": "Days days of week bookings cannot start. Array of numeric day indexes with 0 being Sunday.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "enum": [
+                                    0,
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    6
+                                ]
+                            }
+                        },
+                        "can_be_cancelled": {
+                            "required": false,
+                            "description": "Booking can be cancelled by customer.",
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1/products/batch"
             }
-          }
-        }
-      ]
-    },
-    "/wc/v1/coupons/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "code": {
-              "required": false,
-              "description": "Coupon code."
-            },
-            "description": {
-              "required": false,
-              "description": "Coupon description."
-            },
-            "discount_type": {
-              "required": false,
-              "enum": [
-                "fixed_cart",
-                "percent",
-                "fixed_product",
-                "percent_product"
-              ],
-              "description": "Determines the type of discount that will be applied."
-            },
-            "amount": {
-              "required": false,
-              "description": "The amount of discount."
-            },
-            "expiry_date": {
-              "required": false,
-              "description": "UTC DateTime when the coupon expires."
-            },
-            "individual_use": {
-              "required": false,
-              "description": "Whether coupon can only be used individually."
-            },
-            "product_ids": {
-              "required": false,
-              "description": "List of product ID's the coupon can be used on."
-            },
-            "exclude_product_ids": {
-              "required": false,
-              "description": "List of product ID's the coupon cannot be used on."
-            },
-            "usage_limit": {
-              "required": false,
-              "description": "How many times the coupon can be used."
-            },
-            "usage_limit_per_user": {
-              "required": false,
-              "description": "How many times the coupon can be used per customer."
-            },
-            "limit_usage_to_x_items": {
-              "required": false,
-              "description": "Max number of items in the cart the coupon can be applied to."
-            },
-            "free_shipping": {
-              "required": false,
-              "description": "Define if can be applied for free shipping."
-            },
-            "product_categories": {
-              "required": false,
-              "description": "List of category ID's the coupon applies to."
-            },
-            "excluded_product_categories": {
-              "required": false,
-              "description": "List of category ID's the coupon does not apply to."
-            },
-            "exclude_sale_items": {
-              "required": false,
-              "description": "Define if should not apply when have sale items."
-            },
-            "minimum_amount": {
-              "required": false,
-              "description": "Minimum order amount that needs to be in the cart before coupon applies."
-            },
-            "maximum_amount": {
-              "required": false,
-              "description": "Maximum order amount allowed when using the coupon."
-            },
-            "email_restrictions": {
-              "required": false,
-              "description": "List of email addresses that can use this coupon."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/coupons/batch"
-      }
-    },
-    "/wc/v1/customers/(?P<customer_id>[\\d]+)/downloads": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/customers": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "offset": {
-              "required": false,
-              "description": "Offset the result set by a specific number of items."
-            },
-            "order": {
-              "required": false,
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "name",
-              "enum": [
-                "id",
-                "include",
-                "name",
-                "registered_date"
-              ],
-              "description": "Sort collection by object attribute."
-            },
-            "email": {
-              "required": false,
-              "description": "Limit result set to resources with a specific email."
-            },
-            "role": {
-              "required": false,
-              "default": "customer",
-              "enum": [
-                "all",
-                "administrator",
-                "editor",
-                "author",
-                "contributor",
-                "subscriber",
-                "customer",
-                "shop_manager"
-              ],
-              "description": "Limit result set to resources with a specific role."
-            }
-          }
         },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "email": {
-              "required": true
-            },
-            "first_name": {
-              "required": false,
-              "description": "Customer first name."
-            },
-            "last_name": {
-              "required": false,
-              "description": "Customer last name."
-            },
-            "username": {
-              "required": false
-            },
-            "password": {
-              "required": true
-            },
-            "billing_address": {
-              "required": false,
-              "description": "List of billing address data."
-            },
-            "shipping_address": {
-              "required": false,
-              "description": "List of shipping address data."
+        "/wc-bookings/v1/products/categories": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET",
+                "POST"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "context": {
+                            "required": false,
+                            "default": "view",
+                            "enum": [
+                                "view",
+                                "edit"
+                            ],
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string"
+                        },
+                        "page": {
+                            "required": false,
+                            "default": 1,
+                            "description": "Current page of the collection.",
+                            "type": "integer"
+                        },
+                        "per_page": {
+                            "required": false,
+                            "default": 10,
+                            "description": "Maximum number of items to be returned in result set.",
+                            "type": "integer"
+                        },
+                        "search": {
+                            "required": false,
+                            "description": "Limit results to those matching a string.",
+                            "type": "string"
+                        },
+                        "exclude": {
+                            "required": false,
+                            "default": [],
+                            "description": "Ensure result set excludes specific IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "include": {
+                            "required": false,
+                            "default": [],
+                            "description": "Limit result set to specific ids.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "order": {
+                            "required": false,
+                            "default": "asc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "description": "Order sort attribute ascending or descending.",
+                            "type": "string"
+                        },
+                        "orderby": {
+                            "required": false,
+                            "default": "name",
+                            "enum": [
+                                "id",
+                                "include",
+                                "name",
+                                "slug",
+                                "term_group",
+                                "description",
+                                "count"
+                            ],
+                            "description": "Sort collection by resource attribute.",
+                            "type": "string"
+                        },
+                        "hide_empty": {
+                            "required": false,
+                            "default": false,
+                            "description": "Whether to hide resources not assigned to any products.",
+                            "type": "boolean"
+                        },
+                        "parent": {
+                            "required": false,
+                            "description": "Limit result set to resources assigned to a specific parent.",
+                            "type": "integer"
+                        },
+                        "product": {
+                            "required": false,
+                            "description": "Limit result set to resources assigned to a specific product.",
+                            "type": "integer"
+                        },
+                        "slug": {
+                            "required": false,
+                            "description": "Limit result set to resources with a specific slug.",
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "POST"
+                    ],
+                    "args": {
+                        "name": {
+                            "required": true,
+                            "description": "Name for the resource.",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "required": false,
+                            "description": "An alphanumeric identifier for the resource unique to its type.",
+                            "type": "string"
+                        },
+                        "parent": {
+                            "required": false,
+                            "description": "The ID for the parent of the resource.",
+                            "type": "integer"
+                        },
+                        "description": {
+                            "required": false,
+                            "description": "HTML description of the resource.",
+                            "type": "string"
+                        },
+                        "display": {
+                            "required": false,
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "products",
+                                "subcategories",
+                                "both"
+                            ],
+                            "description": "Category archive display type.",
+                            "type": "string"
+                        },
+                        "image": {
+                            "required": false,
+                            "description": "Image data.",
+                            "type": "object"
+                        },
+                        "menu_order": {
+                            "required": false,
+                            "description": "Menu order, used to custom sort the resource.",
+                            "type": "integer"
+                        }
+                    }
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1/products/categories"
             }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/customers"
-      }
-    },
-    "/wc/v1/customers/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
         },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "email": {
-              "required": false,
-              "description": "The email address for the customer."
-            },
-            "first_name": {
-              "required": false,
-              "description": "Customer first name."
-            },
-            "last_name": {
-              "required": false,
-              "description": "Customer last name."
-            },
-            "username": {
-              "required": false,
-              "description": "Customer login name."
-            },
-            "password": {
-              "required": false,
-              "description": "Customer password."
-            },
-            "billing_address": {
-              "required": false,
-              "description": "List of billing address data."
-            },
-            "shipping_address": {
-              "required": false,
-              "description": "List of shipping address data."
-            }
-          }
+        "/wc-bookings/v1/products/categories/(?P<id>[\\d]+)": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "context": {
+                            "required": false,
+                            "default": "view",
+                            "enum": [
+                                "view",
+                                "edit"
+                            ],
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "POST",
+                        "PUT",
+                        "PATCH"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "name": {
+                            "required": false,
+                            "description": "Category name.",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "required": false,
+                            "description": "An alphanumeric identifier for the resource unique to its type.",
+                            "type": "string"
+                        },
+                        "parent": {
+                            "required": false,
+                            "description": "The ID for the parent of the resource.",
+                            "type": "integer"
+                        },
+                        "description": {
+                            "required": false,
+                            "description": "HTML description of the resource.",
+                            "type": "string"
+                        },
+                        "display": {
+                            "required": false,
+                            "enum": [
+                                "default",
+                                "products",
+                                "subcategories",
+                                "both"
+                            ],
+                            "description": "Category archive display type.",
+                            "type": "string"
+                        },
+                        "image": {
+                            "required": false,
+                            "description": "Image data.",
+                            "type": "object"
+                        },
+                        "menu_order": {
+                            "required": false,
+                            "description": "Menu order, used to custom sort the resource.",
+                            "type": "integer"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "DELETE"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "force": {
+                            "required": false,
+                            "default": false,
+                            "description": "Required to be true, as resource does not support trashing.",
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ]
         },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            },
-            "reassign": {
-              "required": false
+        "/wc-bookings/v1/products/categories/batch": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "POST",
+                "PUT",
+                "PATCH"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "POST",
+                        "PUT",
+                        "PATCH"
+                    ],
+                    "args": {
+                        "name": {
+                            "required": false,
+                            "description": "Category name.",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "required": false,
+                            "description": "An alphanumeric identifier for the resource unique to its type.",
+                            "type": "string"
+                        },
+                        "parent": {
+                            "required": false,
+                            "description": "The ID for the parent of the resource.",
+                            "type": "integer"
+                        },
+                        "description": {
+                            "required": false,
+                            "description": "HTML description of the resource.",
+                            "type": "string"
+                        },
+                        "display": {
+                            "required": false,
+                            "enum": [
+                                "default",
+                                "products",
+                                "subcategories",
+                                "both"
+                            ],
+                            "description": "Category archive display type.",
+                            "type": "string"
+                        },
+                        "image": {
+                            "required": false,
+                            "description": "Image data.",
+                            "type": "object"
+                        },
+                        "menu_order": {
+                            "required": false,
+                            "description": "Menu order, used to custom sort the resource.",
+                            "type": "integer"
+                        }
+                    }
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1/products/categories/batch"
             }
-          }
-        }
-      ]
-    },
-    "/wc/v1/customers/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "email": {
-              "required": false,
-              "description": "The email address for the customer."
-            },
-            "first_name": {
-              "required": false,
-              "description": "Customer first name."
-            },
-            "last_name": {
-              "required": false,
-              "description": "Customer last name."
-            },
-            "username": {
-              "required": false,
-              "description": "Customer login name."
-            },
-            "password": {
-              "required": false,
-              "description": "Customer password."
-            },
-            "billing_address": {
-              "required": false,
-              "description": "List of billing address data."
-            },
-            "shipping_address": {
-              "required": false,
-              "description": "List of shipping address data."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/customers/batch"
-      }
-    },
-    "/wc/v1/orders/(?P<order_id>[\\d]+)/notes": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
         },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "note": {
-              "required": true
-            },
-            "customer_note": {
-              "required": false,
-              "default": false,
-              "description": "Shows/define if the note is only for reference or for the customer (the user will be notified)."
+        "/wc-bookings/v1/resources": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET",
+                "POST"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "context": {
+                            "required": false,
+                            "default": "view",
+                            "enum": [
+                                "view"
+                            ],
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string"
+                        },
+                        "page": {
+                            "required": false,
+                            "default": 1,
+                            "description": "Current page of the collection.",
+                            "type": "integer"
+                        },
+                        "per_page": {
+                            "required": false,
+                            "default": 10,
+                            "description": "Maximum number of items to be returned in result set.",
+                            "type": "integer"
+                        },
+                        "search": {
+                            "required": false,
+                            "description": "Limit results to those matching a string.",
+                            "type": "string"
+                        },
+                        "after": {
+                            "required": false,
+                            "description": "Limit response to resources published after a given ISO8601 compliant date.",
+                            "type": "string"
+                        },
+                        "before": {
+                            "required": false,
+                            "description": "Limit response to resources published before a given ISO8601 compliant date.",
+                            "type": "string"
+                        },
+                        "exclude": {
+                            "required": false,
+                            "default": [],
+                            "description": "Ensure result set excludes specific IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "include": {
+                            "required": false,
+                            "default": [],
+                            "description": "Limit result set to specific ids.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "offset": {
+                            "required": false,
+                            "description": "Offset the result set by a specific number of items.",
+                            "type": "integer"
+                        },
+                        "order": {
+                            "required": false,
+                            "default": "desc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "description": "Order sort attribute ascending or descending.",
+                            "type": "string"
+                        },
+                        "orderby": {
+                            "required": false,
+                            "default": "date",
+                            "enum": [
+                                "date",
+                                "id",
+                                "include",
+                                "title",
+                                "slug"
+                            ],
+                            "description": "Sort collection by object attribute.",
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "POST"
+                    ],
+                    "args": {
+                        "availability": {
+                            "required": false,
+                            "type": {
+                                "description": "Availability date/time range type string.",
+                                "type": "string",
+                                "readonly": true,
+                                "context": [
+                                    "view"
+                                ]
+                            }
+                        }
+                    }
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1/resources"
             }
-          }
-        }
-      ]
-    },
-    "/wc/v1/orders/(?P<order_id>[\\d]+)/notes/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
         },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/orders/(?P<order_id>[\\d]+)/refunds": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "after": {
-              "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
-            },
-            "before": {
-              "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "offset": {
-              "required": false,
-              "description": "Offset the result set by a specific number of items."
-            },
-            "order": {
-              "required": false,
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "date",
-              "enum": [
-                "date",
-                "id",
-                "include",
-                "title",
-                "slug"
-              ],
-              "description": "Sort collection by object attribute."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to posts with a specific slug."
-            },
-            "filter": {
-              "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
-            },
-            "dp": {
-              "required": false,
-              "default": 2,
-              "description": "Number of decimal points to use in each resource."
-            }
-          }
+        "/wc-bookings/v1/resources/(?P<id>[\\d]+)": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "context": {
+                            "required": false,
+                            "default": "view",
+                            "enum": [
+                                "view"
+                            ],
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "POST",
+                        "PUT",
+                        "PATCH"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "availability": {
+                            "required": false,
+                            "type": {
+                                "description": "Availability date/time range type string.",
+                                "type": "string",
+                                "readonly": true,
+                                "context": [
+                                    "view"
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "DELETE"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "force": {
+                            "required": false,
+                            "default": false,
+                            "description": "Whether to bypass trash and force deletion.",
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ]
         },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "amount": {
-              "required": false,
-              "description": "Refund amount."
-            },
-            "reason": {
-              "required": false,
-              "description": "Reason for refund"
-            },
-            "line_items": {
-              "required": false,
-              "description": "Line items data."
-            },
-            "email": {
-              "required": true
+        "/wc-bookings/v1/resources/batch": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "POST",
+                "PUT",
+                "PATCH"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "POST",
+                        "PUT",
+                        "PATCH"
+                    ],
+                    "args": {
+                        "availability": {
+                            "required": false,
+                            "type": {
+                                "description": "Availability date/time range type string.",
+                                "type": "string",
+                                "readonly": true,
+                                "context": [
+                                    "view"
+                                ]
+                            }
+                        }
+                    }
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1/resources/batch"
             }
-          }
-        }
-      ]
-    },
-    "/wc/v1/orders/(?P<order_id>[\\d]+)/refunds/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
         },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            },
-            "reassign": {
-              "required": false
+        "/wc-bookings/v1/bookings": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET",
+                "POST"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "context": {
+                            "required": false,
+                            "default": "view",
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string"
+                        },
+                        "page": {
+                            "required": false,
+                            "default": 1,
+                            "description": "Current page of the collection.",
+                            "type": "integer"
+                        },
+                        "per_page": {
+                            "required": false,
+                            "default": 10,
+                            "description": "Maximum number of items to be returned in result set.",
+                            "type": "integer"
+                        },
+                        "search": {
+                            "required": false,
+                            "description": "Limit results to those matching a string.",
+                            "type": "string"
+                        },
+                        "after": {
+                            "required": false,
+                            "description": "Limit response to resources published after a given ISO8601 compliant date.",
+                            "type": "string"
+                        },
+                        "before": {
+                            "required": false,
+                            "description": "Limit response to resources published before a given ISO8601 compliant date.",
+                            "type": "string"
+                        },
+                        "exclude": {
+                            "required": false,
+                            "default": [],
+                            "description": "Ensure result set excludes specific IDs.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "include": {
+                            "required": false,
+                            "default": [],
+                            "description": "Limit result set to specific ids.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "offset": {
+                            "required": false,
+                            "description": "Offset the result set by a specific number of items.",
+                            "type": "integer"
+                        },
+                        "order": {
+                            "required": false,
+                            "default": "desc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "description": "Order sort attribute ascending or descending.",
+                            "type": "string"
+                        },
+                        "orderby": {
+                            "required": false,
+                            "default": "date",
+                            "enum": [
+                                "date",
+                                "id",
+                                "include",
+                                "title",
+                                "slug"
+                            ],
+                            "description": "Sort collection by object attribute.",
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "POST"
+                    ],
+                    "args": []
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1/bookings"
             }
-          }
-        }
-      ]
-    },
-    "/wc/v1/orders": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "after": {
-              "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
-            },
-            "before": {
-              "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "offset": {
-              "required": false,
-              "description": "Offset the result set by a specific number of items."
-            },
-            "order": {
-              "required": false,
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "date",
-              "enum": [
-                "date",
-                "id",
-                "include",
-                "title",
-                "slug"
-              ],
-              "description": "Sort collection by object attribute."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to posts with a specific slug."
-            },
-            "filter": {
-              "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
-            },
-            "status": {
-              "required": false,
-              "default": "any",
-              "enum": [
-                "any",
-                "pending",
-                "processing",
-                "on-hold",
-                "completed",
-                "cancelled",
-                "refunded",
-                "failed"
-              ],
-              "description": "Limit result set to orders assigned a specific status."
-            },
-            "customer": {
-              "required": false,
-              "description": "Limit result set to orders assigned a specific customer."
-            },
-            "product": {
-              "required": false,
-              "description": "Limit result set to orders assigned a specific product."
-            },
-            "dp": {
-              "required": false,
-              "default": 2,
-              "description": "Number of decimal points to use in each resource."
-            }
-          }
         },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "parent_id": {
-              "required": false,
-              "description": "Parent order ID."
-            },
-            "status": {
-              "required": false,
-              "default": "pending",
-              "enum": [
-                "pending",
-                "processing",
-                "on-hold",
-                "completed",
-                "cancelled",
-                "refunded",
-                "failed"
-              ],
-              "description": "Order status."
-            },
-            "currency": {
-              "required": false,
-              "default": "BRL",
-              "enum": [
-                "AED",
-                "AFN",
-                "ALL",
-                "AMD",
-                "ANG",
-                "AOA",
-                "ARS",
-                "AUD",
-                "AWG",
-                "AZN",
-                "BAM",
-                "BBD",
-                "BDT",
-                "BGN",
-                "BHD",
-                "BIF",
-                "BMD",
-                "BND",
-                "BOB",
-                "BRL",
-                "BSD",
-                "BTC",
-                "BTN",
-                "BWP",
-                "BYR",
-                "BZD",
-                "CAD",
-                "CDF",
-                "CHF",
-                "CLP",
-                "CNY",
-                "COP",
-                "CRC",
-                "CUC",
-                "CUP",
-                "CVE",
-                "CZK",
-                "DJF",
-                "DKK",
-                "DOP",
-                "DZD",
-                "EGP",
-                "ERN",
-                "ETB",
-                "EUR",
-                "FJD",
-                "FKP",
-                "GBP",
-                "GEL",
-                "GGP",
-                "GHS",
-                "GIP",
-                "GMD",
-                "GNF",
-                "GTQ",
-                "GYD",
-                "HKD",
-                "HNL",
-                "HRK",
-                "HTG",
-                "HUF",
-                "IDR",
-                "ILS",
-                "IMP",
-                "INR",
-                "IQD",
-                "IRR",
-                "ISK",
-                "JEP",
-                "JMD",
-                "JOD",
-                "JPY",
-                "KES",
-                "KGS",
-                "KHR",
-                "KMF",
-                "KPW",
-                "KRW",
-                "KWD",
-                "KYD",
-                "KZT",
-                "LAK",
-                "LBP",
-                "LKR",
-                "LRD",
-                "LSL",
-                "LYD",
-                "MAD",
-                "MDL",
-                "MGA",
-                "MKD",
-                "MMK",
-                "MNT",
-                "MOP",
-                "MRO",
-                "MUR",
-                "MVR",
-                "MWK",
-                "MXN",
-                "MYR",
-                "MZN",
-                "NAD",
-                "NGN",
-                "NIO",
-                "NOK",
-                "NPR",
-                "NZD",
-                "OMR",
-                "PAB",
-                "PEN",
-                "PGK",
-                "PHP",
-                "PKR",
-                "PLN",
-                "PRB",
-                "PYG",
-                "QAR",
-                "RON",
-                "RSD",
-                "RUB",
-                "RWF",
-                "SAR",
-                "SBD",
-                "SCR",
-                "SDG",
-                "SEK",
-                "SGD",
-                "SHP",
-                "SLL",
-                "SOS",
-                "SRD",
-                "SSP",
-                "STD",
-                "SYP",
-                "SZL",
-                "THB",
-                "TJS",
-                "TMT",
-                "TND",
-                "TOP",
-                "TRY",
-                "TTD",
-                "TWD",
-                "TZS",
-                "UAH",
-                "UGX",
-                "USD",
-                "UYU",
-                "UZS",
-                "VEF",
-                "VND",
-                "VUV",
-                "WST",
-                "XAF",
-                "XCD",
-                "XOF",
-                "XPF",
-                "YER",
-                "ZAR",
-                "ZMW"
-              ],
-              "description": "Currency the order was created with, in ISO format."
-            },
-            "customer_id": {
-              "required": false,
-              "default": 0,
-              "description": "User ID who owns the order. 0 for guests."
-            },
-            "billing": {
-              "required": false,
-              "description": "Billing address."
-            },
-            "shipping": {
-              "required": false,
-              "description": "Shipping address."
-            },
-            "payment_method": {
-              "required": false,
-              "description": "Payment method ID."
-            },
-            "payment_method_title": {
-              "required": false,
-              "description": "Payment method title."
-            },
-            "set_paid": {
-              "required": false,
-              "default": false,
-              "description": "Define if the order is paid. It will set the status to processing and reduce stock items."
-            },
-            "transaction_id": {
-              "required": false,
-              "description": "Unique transaction ID."
-            },
-            "customer_note": {
-              "required": false,
-              "description": "Note left by customer during checkout."
-            },
-            "line_items": {
-              "required": false,
-              "description": "Line items data."
-            },
-            "shipping_lines": {
-              "required": false,
-              "description": "Shipping lines data."
-            },
-            "fee_lines": {
-              "required": false,
-              "description": "Fee lines data."
-            },
-            "coupon_lines": {
-              "required": false,
-              "description": "Coupons line data."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/orders"
-      }
-    },
-    "/wc/v1/orders/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
+        "/wc-bookings/v1/bookings/(?P<id>[\\d]+)": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "context": {
+                            "required": false,
+                            "default": "view",
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "POST",
+                        "PUT",
+                        "PATCH"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "DELETE"
+                    ],
+                    "args": {
+                        "id": {
+                            "required": false,
+                            "description": "Unique identifier for the resource.",
+                            "type": "integer"
+                        },
+                        "force": {
+                            "required": false,
+                            "default": false,
+                            "description": "Whether to bypass trash and force deletion.",
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ]
         },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "parent_id": {
-              "required": false,
-              "description": "Parent order ID."
-            },
-            "status": {
-              "required": false,
-              "enum": [
-                "pending",
-                "processing",
-                "on-hold",
-                "completed",
-                "cancelled",
-                "refunded",
-                "failed"
-              ],
-              "description": "Order status."
-            },
-            "currency": {
-              "required": false,
-              "enum": [
-                "AED",
-                "AFN",
-                "ALL",
-                "AMD",
-                "ANG",
-                "AOA",
-                "ARS",
-                "AUD",
-                "AWG",
-                "AZN",
-                "BAM",
-                "BBD",
-                "BDT",
-                "BGN",
-                "BHD",
-                "BIF",
-                "BMD",
-                "BND",
-                "BOB",
-                "BRL",
-                "BSD",
-                "BTC",
-                "BTN",
-                "BWP",
-                "BYR",
-                "BZD",
-                "CAD",
-                "CDF",
-                "CHF",
-                "CLP",
-                "CNY",
-                "COP",
-                "CRC",
-                "CUC",
-                "CUP",
-                "CVE",
-                "CZK",
-                "DJF",
-                "DKK",
-                "DOP",
-                "DZD",
-                "EGP",
-                "ERN",
-                "ETB",
-                "EUR",
-                "FJD",
-                "FKP",
-                "GBP",
-                "GEL",
-                "GGP",
-                "GHS",
-                "GIP",
-                "GMD",
-                "GNF",
-                "GTQ",
-                "GYD",
-                "HKD",
-                "HNL",
-                "HRK",
-                "HTG",
-                "HUF",
-                "IDR",
-                "ILS",
-                "IMP",
-                "INR",
-                "IQD",
-                "IRR",
-                "ISK",
-                "JEP",
-                "JMD",
-                "JOD",
-                "JPY",
-                "KES",
-                "KGS",
-                "KHR",
-                "KMF",
-                "KPW",
-                "KRW",
-                "KWD",
-                "KYD",
-                "KZT",
-                "LAK",
-                "LBP",
-                "LKR",
-                "LRD",
-                "LSL",
-                "LYD",
-                "MAD",
-                "MDL",
-                "MGA",
-                "MKD",
-                "MMK",
-                "MNT",
-                "MOP",
-                "MRO",
-                "MUR",
-                "MVR",
-                "MWK",
-                "MXN",
-                "MYR",
-                "MZN",
-                "NAD",
-                "NGN",
-                "NIO",
-                "NOK",
-                "NPR",
-                "NZD",
-                "OMR",
-                "PAB",
-                "PEN",
-                "PGK",
-                "PHP",
-                "PKR",
-                "PLN",
-                "PRB",
-                "PYG",
-                "QAR",
-                "RON",
-                "RSD",
-                "RUB",
-                "RWF",
-                "SAR",
-                "SBD",
-                "SCR",
-                "SDG",
-                "SEK",
-                "SGD",
-                "SHP",
-                "SLL",
-                "SOS",
-                "SRD",
-                "SSP",
-                "STD",
-                "SYP",
-                "SZL",
-                "THB",
-                "TJS",
-                "TMT",
-                "TND",
-                "TOP",
-                "TRY",
-                "TTD",
-                "TWD",
-                "TZS",
-                "UAH",
-                "UGX",
-                "USD",
-                "UYU",
-                "UZS",
-                "VEF",
-                "VND",
-                "VUV",
-                "WST",
-                "XAF",
-                "XCD",
-                "XOF",
-                "XPF",
-                "YER",
-                "ZAR",
-                "ZMW"
-              ],
-              "description": "Currency the order was created with, in ISO format."
-            },
-            "customer_id": {
-              "required": false,
-              "description": "User ID who owns the order. 0 for guests."
-            },
-            "billing": {
-              "required": false,
-              "description": "Billing address."
-            },
-            "shipping": {
-              "required": false,
-              "description": "Shipping address."
-            },
-            "payment_method": {
-              "required": false,
-              "description": "Payment method ID."
-            },
-            "payment_method_title": {
-              "required": false,
-              "description": "Payment method title."
-            },
-            "set_paid": {
-              "required": false,
-              "description": "Define if the order is paid. It will set the status to processing and reduce stock items."
-            },
-            "transaction_id": {
-              "required": false,
-              "description": "Unique transaction ID."
-            },
-            "customer_note": {
-              "required": false,
-              "description": "Note left by customer during checkout."
-            },
-            "line_items": {
-              "required": false,
-              "description": "Line items data."
-            },
-            "shipping_lines": {
-              "required": false,
-              "description": "Shipping lines data."
-            },
-            "fee_lines": {
-              "required": false,
-              "description": "Fee lines data."
-            },
-            "coupon_lines": {
-              "required": false,
-              "description": "Coupons line data."
+        "/wc-bookings/v1/bookings/batch": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "POST",
+                "PUT",
+                "PATCH"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "POST",
+                        "PUT",
+                        "PATCH"
+                    ],
+                    "args": []
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1/bookings/batch"
             }
-          }
         },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Whether to bypass trash and force deletion."
-            },
-            "reassign": {
-              "required": false
+        "/wc-bookings/v1/products/slots": {
+            "namespace": "wc-bookings/v1",
+            "methods": [
+                "GET"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": []
+                }
+            ],
+            "_links": {
+                "self": "https://example.com/wp-json/wc-bookings/v1/products/slots"
             }
-          }
         }
-      ]
     },
-    "/wc/v1/orders/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "parent_id": {
-              "required": false,
-              "description": "Parent order ID."
-            },
-            "status": {
-              "required": false,
-              "enum": [
-                "pending",
-                "processing",
-                "on-hold",
-                "completed",
-                "cancelled",
-                "refunded",
-                "failed"
-              ],
-              "description": "Order status."
-            },
-            "currency": {
-              "required": false,
-              "enum": [
-                "AED",
-                "AFN",
-                "ALL",
-                "AMD",
-                "ANG",
-                "AOA",
-                "ARS",
-                "AUD",
-                "AWG",
-                "AZN",
-                "BAM",
-                "BBD",
-                "BDT",
-                "BGN",
-                "BHD",
-                "BIF",
-                "BMD",
-                "BND",
-                "BOB",
-                "BRL",
-                "BSD",
-                "BTC",
-                "BTN",
-                "BWP",
-                "BYR",
-                "BZD",
-                "CAD",
-                "CDF",
-                "CHF",
-                "CLP",
-                "CNY",
-                "COP",
-                "CRC",
-                "CUC",
-                "CUP",
-                "CVE",
-                "CZK",
-                "DJF",
-                "DKK",
-                "DOP",
-                "DZD",
-                "EGP",
-                "ERN",
-                "ETB",
-                "EUR",
-                "FJD",
-                "FKP",
-                "GBP",
-                "GEL",
-                "GGP",
-                "GHS",
-                "GIP",
-                "GMD",
-                "GNF",
-                "GTQ",
-                "GYD",
-                "HKD",
-                "HNL",
-                "HRK",
-                "HTG",
-                "HUF",
-                "IDR",
-                "ILS",
-                "IMP",
-                "INR",
-                "IQD",
-                "IRR",
-                "ISK",
-                "JEP",
-                "JMD",
-                "JOD",
-                "JPY",
-                "KES",
-                "KGS",
-                "KHR",
-                "KMF",
-                "KPW",
-                "KRW",
-                "KWD",
-                "KYD",
-                "KZT",
-                "LAK",
-                "LBP",
-                "LKR",
-                "LRD",
-                "LSL",
-                "LYD",
-                "MAD",
-                "MDL",
-                "MGA",
-                "MKD",
-                "MMK",
-                "MNT",
-                "MOP",
-                "MRO",
-                "MUR",
-                "MVR",
-                "MWK",
-                "MXN",
-                "MYR",
-                "MZN",
-                "NAD",
-                "NGN",
-                "NIO",
-                "NOK",
-                "NPR",
-                "NZD",
-                "OMR",
-                "PAB",
-                "PEN",
-                "PGK",
-                "PHP",
-                "PKR",
-                "PLN",
-                "PRB",
-                "PYG",
-                "QAR",
-                "RON",
-                "RSD",
-                "RUB",
-                "RWF",
-                "SAR",
-                "SBD",
-                "SCR",
-                "SDG",
-                "SEK",
-                "SGD",
-                "SHP",
-                "SLL",
-                "SOS",
-                "SRD",
-                "SSP",
-                "STD",
-                "SYP",
-                "SZL",
-                "THB",
-                "TJS",
-                "TMT",
-                "TND",
-                "TOP",
-                "TRY",
-                "TTD",
-                "TWD",
-                "TZS",
-                "UAH",
-                "UGX",
-                "USD",
-                "UYU",
-                "UZS",
-                "VEF",
-                "VND",
-                "VUV",
-                "WST",
-                "XAF",
-                "XCD",
-                "XOF",
-                "XPF",
-                "YER",
-                "ZAR",
-                "ZMW"
-              ],
-              "description": "Currency the order was created with, in ISO format."
-            },
-            "customer_id": {
-              "required": false,
-              "description": "User ID who owns the order. 0 for guests."
-            },
-            "billing": {
-              "required": false,
-              "description": "Billing address."
-            },
-            "shipping": {
-              "required": false,
-              "description": "Shipping address."
-            },
-            "payment_method": {
-              "required": false,
-              "description": "Payment method ID."
-            },
-            "payment_method_title": {
-              "required": false,
-              "description": "Payment method title."
-            },
-            "set_paid": {
-              "required": false,
-              "description": "Define if the order is paid. It will set the status to processing and reduce stock items."
-            },
-            "transaction_id": {
-              "required": false,
-              "description": "Unique transaction ID."
-            },
-            "customer_note": {
-              "required": false,
-              "description": "Note left by customer during checkout."
-            },
-            "line_items": {
-              "required": false,
-              "description": "Line items data."
-            },
-            "shipping_lines": {
-              "required": false,
-              "description": "Shipping lines data."
-            },
-            "fee_lines": {
-              "required": false,
-              "description": "Fee lines data."
-            },
-            "coupon_lines": {
-              "required": false,
-              "description": "Coupons line data."
+    "_links": {
+        "up": [
+            {
+                "href": "https://example.com/wp-json/"
             }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/orders/batch"
-      }
-    },
-    "/wc/v1/products/attributes/(?P<attribute_id>[\\d]+)/terms": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "order": {
-              "required": false,
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "name",
-              "enum": [
-                "id",
-                "include",
-                "name",
-                "slug",
-                "term_group",
-                "description",
-                "count"
-              ],
-              "description": "Sort collection by resource attribute."
-            },
-            "hide_empty": {
-              "required": false,
-              "default": false,
-              "description": "Whether to hide resources not assigned to any products."
-            },
-            "parent": {
-              "required": false,
-              "description": "Limit result set to resources assigned to a specific parent."
-            },
-            "product": {
-              "required": false,
-              "description": "Limit result set to resources assigned to a specific product."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to resources with a specific slug."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "name": {
-              "required": true
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "menu_order": {
-              "required": false,
-              "description": "Menu order, used to custom sort the resource."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/attributes/(?P<attribute_id>[\\d]+)/terms/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Term name."
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "menu_order": {
-              "required": false,
-              "description": "Menu order, used to custom sort the resource."
-            }
-          }
-        },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/attributes/(?P<attribute_id>[\\d]+)/terms/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Term name."
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "menu_order": {
-              "required": false,
-              "description": "Menu order, used to custom sort the resource."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/attributes": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "name": {
-              "required": true
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "type": {
-              "required": false,
-              "default": "select",
-              "enum": [
-                "select",
-                "text"
-              ],
-              "description": "Type of attribute."
-            },
-            "order_by": {
-              "required": false,
-              "default": "menu_order",
-              "enum": [
-                "menu_order",
-                "name",
-                "name_num",
-                "id"
-              ],
-              "description": "Default sort order."
-            },
-            "has_archives": {
-              "required": false,
-              "default": false,
-              "description": "Enable/Disable attribute archives."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/products/attributes"
-      }
-    },
-    "/wc/v1/products/attributes/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Attribute name."
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "type": {
-              "required": false,
-              "enum": [
-                "select",
-                "text"
-              ],
-              "description": "Type of attribute."
-            },
-            "order_by": {
-              "required": false,
-              "enum": [
-                "menu_order",
-                "name",
-                "name_num",
-                "id"
-              ],
-              "description": "Default sort order."
-            },
-            "has_archives": {
-              "required": false,
-              "description": "Enable/Disable attribute archives."
-            }
-          }
-        },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/categories": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "order": {
-              "required": false,
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "name",
-              "enum": [
-                "id",
-                "include",
-                "name",
-                "slug",
-                "term_group",
-                "description",
-                "count"
-              ],
-              "description": "Sort collection by resource attribute."
-            },
-            "hide_empty": {
-              "required": false,
-              "default": false,
-              "description": "Whether to hide resources not assigned to any products."
-            },
-            "parent": {
-              "required": false,
-              "description": "Limit result set to resources assigned to a specific parent."
-            },
-            "product": {
-              "required": false,
-              "description": "Limit result set to resources assigned to a specific product."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to resources with a specific slug."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "name": {
-              "required": true
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "parent": {
-              "required": false,
-              "description": "The id for the parent of the resource."
-            },
-            "description": {
-              "required": false,
-              "description": "HTML description of the resource."
-            },
-            "display": {
-              "required": false,
-              "default": "default",
-              "enum": [
-                "default",
-                "products",
-                "subcategories",
-                "both"
-              ],
-              "description": "Category archive display type."
-            },
-            "image": {
-              "required": false,
-              "description": "Image URL."
-            },
-            "menu_order": {
-              "required": false,
-              "description": "Menu order, used to custom sort the resource."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/products/categories"
-      }
-    },
-    "/wc/v1/products/categories/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Category name."
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "parent": {
-              "required": false,
-              "description": "The id for the parent of the resource."
-            },
-            "description": {
-              "required": false,
-              "description": "HTML description of the resource."
-            },
-            "display": {
-              "required": false,
-              "enum": [
-                "default",
-                "products",
-                "subcategories",
-                "both"
-              ],
-              "description": "Category archive display type."
-            },
-            "image": {
-              "required": false,
-              "description": "Image URL."
-            },
-            "menu_order": {
-              "required": false,
-              "description": "Menu order, used to custom sort the resource."
-            }
-          }
-        },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/categories/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Category name."
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "parent": {
-              "required": false,
-              "description": "The id for the parent of the resource."
-            },
-            "description": {
-              "required": false,
-              "description": "HTML description of the resource."
-            },
-            "display": {
-              "required": false,
-              "enum": [
-                "default",
-                "products",
-                "subcategories",
-                "both"
-              ],
-              "description": "Category archive display type."
-            },
-            "image": {
-              "required": false,
-              "description": "Image URL."
-            },
-            "menu_order": {
-              "required": false,
-              "description": "Menu order, used to custom sort the resource."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/products/categories/batch"
-      }
-    },
-    "/wc/v1/products/(?P<product_id>[\\d]+)/reviews": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/(?P<product_id>[\\d]+)/reviews/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/shipping_classes": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "offset": {
-              "required": false,
-              "description": "Offset the result set by a specific number of items."
-            },
-            "order": {
-              "required": false,
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "name",
-              "enum": [
-                "id",
-                "include",
-                "name",
-                "slug",
-                "term_group",
-                "description",
-                "count"
-              ],
-              "description": "Sort collection by resource attribute."
-            },
-            "hide_empty": {
-              "required": false,
-              "default": false,
-              "description": "Whether to hide resources not assigned to any products."
-            },
-            "product": {
-              "required": false,
-              "description": "Limit result set to resources assigned to a specific product."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to resources with a specific slug."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "name": {
-              "required": true
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "parent": {
-              "required": false,
-              "description": "The id for the parent of the resource."
-            },
-            "description": {
-              "required": false,
-              "description": "HTML description of the resource."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/products/shipping_classes"
-      }
-    },
-    "/wc/v1/products/shipping_classes/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Shipping class name."
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "parent": {
-              "required": false,
-              "description": "The id for the parent of the resource."
-            },
-            "description": {
-              "required": false,
-              "description": "HTML description of the resource."
-            }
-          }
-        },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/shipping_classes/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Shipping class name."
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "parent": {
-              "required": false,
-              "description": "The id for the parent of the resource."
-            },
-            "description": {
-              "required": false,
-              "description": "HTML description of the resource."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/products/shipping_classes/batch"
-      }
-    },
-    "/wc/v1/products/tags": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "offset": {
-              "required": false,
-              "description": "Offset the result set by a specific number of items."
-            },
-            "order": {
-              "required": false,
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "name",
-              "enum": [
-                "id",
-                "include",
-                "name",
-                "slug",
-                "term_group",
-                "description",
-                "count"
-              ],
-              "description": "Sort collection by resource attribute."
-            },
-            "hide_empty": {
-              "required": false,
-              "default": false,
-              "description": "Whether to hide resources not assigned to any products."
-            },
-            "product": {
-              "required": false,
-              "description": "Limit result set to resources assigned to a specific product."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to resources with a specific slug."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "name": {
-              "required": true
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "description": {
-              "required": false,
-              "description": "HTML description of the resource."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/products/tags"
-      }
-    },
-    "/wc/v1/products/tags/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Tag name."
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "description": {
-              "required": false,
-              "description": "HTML description of the resource."
-            }
-          }
-        },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/tags/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Tag name."
-            },
-            "slug": {
-              "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "description": {
-              "required": false,
-              "description": "HTML description of the resource."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/products/tags/batch"
-      }
-    },
-    "/wc/v1/products": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "after": {
-              "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
-            },
-            "before": {
-              "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "offset": {
-              "required": false,
-              "description": "Offset the result set by a specific number of items."
-            },
-            "order": {
-              "required": false,
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "date",
-              "enum": [
-                "date",
-                "id",
-                "include",
-                "title",
-                "slug"
-              ],
-              "description": "Sort collection by object attribute."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to posts with a specific slug."
-            },
-            "filter": {
-              "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
-            },
-            "status": {
-              "required": false,
-              "default": "any",
-              "enum": [
-                "any",
-                "draft",
-                "pending",
-                "private",
-                "publish"
-              ],
-              "description": "Limit result set to products assigned a specific status."
-            },
-            "type": {
-              "required": false,
-              "enum": [
-                "simple",
-                "grouped",
-                "external",
-                "variable"
-              ],
-              "description": "Limit result set to products assigned a specific type."
-            },
-            "category": {
-              "required": false,
-              "description": "Limit result set to products assigned a specific category."
-            },
-            "tag": {
-              "required": false,
-              "description": "Limit result set to products assigned a specific tag."
-            },
-            "shipping_class": {
-              "required": false,
-              "description": "Limit result set to products assigned a specific shipping class."
-            },
-            "attribute": {
-              "required": false,
-              "description": "Limit result set to products with a specific attribute."
-            },
-            "attribute_term": {
-              "required": false,
-              "description": "Limit result set to products with a specific attribute term (required an assigned attribute)."
-            },
-            "sku": {
-              "required": false,
-              "description": "Limit result set to products with a specific SKU."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Product name."
-            },
-            "slug": {
-              "required": false,
-              "description": "Product slug."
-            },
-            "type": {
-              "required": false,
-              "default": "simple",
-              "enum": [
-                "simple",
-                "grouped",
-                "external",
-                "variable"
-              ],
-              "description": "Product type."
-            },
-            "status": {
-              "required": false,
-              "default": "publish",
-              "enum": [
-                "draft",
-                "pending",
-                "private",
-                "publish"
-              ],
-              "description": "Product status (post status)."
-            },
-            "featured": {
-              "required": false,
-              "default": false,
-              "description": "Featured product."
-            },
-            "catalog_visibility": {
-              "required": false,
-              "default": "visible",
-              "enum": [
-                "visible",
-                "catalog",
-                "search",
-                "hidden"
-              ],
-              "description": "Catalog visibility."
-            },
-            "description": {
-              "required": false,
-              "description": "Product description."
-            },
-            "short_description": {
-              "required": false,
-              "description": "Product short description."
-            },
-            "sku": {
-              "required": false,
-              "description": "Unique identifier."
-            },
-            "regular_price": {
-              "required": false,
-              "description": "Product regular price."
-            },
-            "sale_price": {
-              "required": false,
-              "description": "Product sale price."
-            },
-            "date_on_sale_from": {
-              "required": false,
-              "description": "Start date of sale price."
-            },
-            "date_on_sale_to": {
-              "required": false,
-              "description": "End data of sale price."
-            },
-            "virtual": {
-              "required": false,
-              "default": false,
-              "description": "If the product is virtual."
-            },
-            "downloadable": {
-              "required": false,
-              "default": false,
-              "description": "If the product is downloadable."
-            },
-            "downloads": {
-              "required": false,
-              "description": "List of downloadable files."
-            },
-            "download_limit": {
-              "required": false,
-              "description": "Amount of times the product can be downloaded."
-            },
-            "download_expiry": {
-              "required": false,
-              "description": "Number of days that the customer has up to be able to download the product."
-            },
-            "download_type": {
-              "required": false,
-              "default": "standard",
-              "enum": [
-                "standard",
-                "application",
-                "music"
-              ],
-              "description": "Download type, this controls the schema on the front-end."
-            },
-            "external_url": {
-              "required": false,
-              "description": "Product external URL. Only for external products."
-            },
-            "button_text": {
-              "required": false,
-              "description": "Product external button text. Only for external products."
-            },
-            "tax_status": {
-              "required": false,
-              "default": "taxable",
-              "enum": [
-                "taxable",
-                "shipping",
-                "none"
-              ],
-              "description": "Tax status."
-            },
-            "tax_class": {
-              "required": false,
-              "description": "Tax class."
-            },
-            "manage_stock": {
-              "required": false,
-              "default": false,
-              "description": "Stock management at product level."
-            },
-            "stock_quantity": {
-              "required": false,
-              "description": "Stock quantity."
-            },
-            "in_stock": {
-              "required": false,
-              "default": true,
-              "description": "Controls whether or not the product is listed as \"in stock\" or \"out of stock\" on the frontend."
-            },
-            "backorders": {
-              "required": false,
-              "default": "no",
-              "enum": [
-                "no",
-                "notify",
-                "yes"
-              ],
-              "description": "If managing stock, this controls if backorders are allowed."
-            },
-            "sold_individually": {
-              "required": false,
-              "default": false,
-              "description": "Allow one item to be bought in a single order."
-            },
-            "weight": {
-              "required": false,
-              "description": "Product weight (kg)."
-            },
-            "dimensions": {
-              "required": false,
-              "description": "Product dimensions."
-            },
-            "shipping_class": {
-              "required": false,
-              "description": "Shipping class slug."
-            },
-            "reviews_allowed": {
-              "required": false,
-              "default": true,
-              "description": "Allow reviews."
-            },
-            "upsell_ids": {
-              "required": false,
-              "description": "List of up-sell products IDs."
-            },
-            "cross_sell_ids": {
-              "required": false,
-              "description": "List of cross-sell products IDs."
-            },
-            "parent_id": {
-              "required": false,
-              "description": "Product parent ID."
-            },
-            "purchase_note": {
-              "required": false,
-              "description": "Optional note to send the customer after purchase."
-            },
-            "categories": {
-              "required": false,
-              "description": "List of categories."
-            },
-            "tags": {
-              "required": false,
-              "description": "List of tags."
-            },
-            "images": {
-              "required": false,
-              "description": "List of images."
-            },
-            "attributes": {
-              "required": false,
-              "description": "List of attributes."
-            },
-            "default_attributes": {
-              "required": false,
-              "description": "Defaults variation attributes."
-            },
-            "variations": {
-              "required": false,
-              "description": "List of variations."
-            },
-            "menu_order": {
-              "required": false,
-              "description": "Menu order, used to custom sort products."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/products"
-      }
-    },
-    "/wc/v1/products/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Product name."
-            },
-            "slug": {
-              "required": false,
-              "description": "Product slug."
-            },
-            "type": {
-              "required": false,
-              "enum": [
-                "simple",
-                "grouped",
-                "external",
-                "variable"
-              ],
-              "description": "Product type."
-            },
-            "status": {
-              "required": false,
-              "enum": [
-                "draft",
-                "pending",
-                "private",
-                "publish"
-              ],
-              "description": "Product status (post status)."
-            },
-            "featured": {
-              "required": false,
-              "description": "Featured product."
-            },
-            "catalog_visibility": {
-              "required": false,
-              "enum": [
-                "visible",
-                "catalog",
-                "search",
-                "hidden"
-              ],
-              "description": "Catalog visibility."
-            },
-            "description": {
-              "required": false,
-              "description": "Product description."
-            },
-            "short_description": {
-              "required": false,
-              "description": "Product short description."
-            },
-            "sku": {
-              "required": false,
-              "description": "Unique identifier."
-            },
-            "regular_price": {
-              "required": false,
-              "description": "Product regular price."
-            },
-            "sale_price": {
-              "required": false,
-              "description": "Product sale price."
-            },
-            "date_on_sale_from": {
-              "required": false,
-              "description": "Start date of sale price."
-            },
-            "date_on_sale_to": {
-              "required": false,
-              "description": "End data of sale price."
-            },
-            "virtual": {
-              "required": false,
-              "description": "If the product is virtual."
-            },
-            "downloadable": {
-              "required": false,
-              "description": "If the product is downloadable."
-            },
-            "downloads": {
-              "required": false,
-              "description": "List of downloadable files."
-            },
-            "download_limit": {
-              "required": false,
-              "description": "Amount of times the product can be downloaded."
-            },
-            "download_expiry": {
-              "required": false,
-              "description": "Number of days that the customer has up to be able to download the product."
-            },
-            "download_type": {
-              "required": false,
-              "enum": [
-                "standard",
-                "application",
-                "music"
-              ],
-              "description": "Download type, this controls the schema on the front-end."
-            },
-            "external_url": {
-              "required": false,
-              "description": "Product external URL. Only for external products."
-            },
-            "button_text": {
-              "required": false,
-              "description": "Product external button text. Only for external products."
-            },
-            "tax_status": {
-              "required": false,
-              "enum": [
-                "taxable",
-                "shipping",
-                "none"
-              ],
-              "description": "Tax status."
-            },
-            "tax_class": {
-              "required": false,
-              "description": "Tax class."
-            },
-            "manage_stock": {
-              "required": false,
-              "description": "Stock management at product level."
-            },
-            "stock_quantity": {
-              "required": false,
-              "description": "Stock quantity."
-            },
-            "in_stock": {
-              "required": false,
-              "description": "Controls whether or not the product is listed as \"in stock\" or \"out of stock\" on the frontend."
-            },
-            "backorders": {
-              "required": false,
-              "enum": [
-                "no",
-                "notify",
-                "yes"
-              ],
-              "description": "If managing stock, this controls if backorders are allowed."
-            },
-            "sold_individually": {
-              "required": false,
-              "description": "Allow one item to be bought in a single order."
-            },
-            "weight": {
-              "required": false,
-              "description": "Product weight (kg)."
-            },
-            "dimensions": {
-              "required": false,
-              "description": "Product dimensions."
-            },
-            "shipping_class": {
-              "required": false,
-              "description": "Shipping class slug."
-            },
-            "reviews_allowed": {
-              "required": false,
-              "description": "Allow reviews."
-            },
-            "upsell_ids": {
-              "required": false,
-              "description": "List of up-sell products IDs."
-            },
-            "cross_sell_ids": {
-              "required": false,
-              "description": "List of cross-sell products IDs."
-            },
-            "parent_id": {
-              "required": false,
-              "description": "Product parent ID."
-            },
-            "purchase_note": {
-              "required": false,
-              "description": "Optional note to send the customer after purchase."
-            },
-            "categories": {
-              "required": false,
-              "description": "List of categories."
-            },
-            "tags": {
-              "required": false,
-              "description": "List of tags."
-            },
-            "images": {
-              "required": false,
-              "description": "List of images."
-            },
-            "attributes": {
-              "required": false,
-              "description": "List of attributes."
-            },
-            "default_attributes": {
-              "required": false,
-              "description": "Defaults variation attributes."
-            },
-            "variations": {
-              "required": false,
-              "description": "List of variations."
-            },
-            "menu_order": {
-              "required": false,
-              "description": "Menu order, used to custom sort products."
-            }
-          }
-        },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Whether to bypass trash and force deletion."
-            },
-            "reassign": {
-              "required": false
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/products/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "Product name."
-            },
-            "slug": {
-              "required": false,
-              "description": "Product slug."
-            },
-            "type": {
-              "required": false,
-              "enum": [
-                "simple",
-                "grouped",
-                "external",
-                "variable"
-              ],
-              "description": "Product type."
-            },
-            "status": {
-              "required": false,
-              "enum": [
-                "draft",
-                "pending",
-                "private",
-                "publish"
-              ],
-              "description": "Product status (post status)."
-            },
-            "featured": {
-              "required": false,
-              "description": "Featured product."
-            },
-            "catalog_visibility": {
-              "required": false,
-              "enum": [
-                "visible",
-                "catalog",
-                "search",
-                "hidden"
-              ],
-              "description": "Catalog visibility."
-            },
-            "description": {
-              "required": false,
-              "description": "Product description."
-            },
-            "short_description": {
-              "required": false,
-              "description": "Product short description."
-            },
-            "sku": {
-              "required": false,
-              "description": "Unique identifier."
-            },
-            "regular_price": {
-              "required": false,
-              "description": "Product regular price."
-            },
-            "sale_price": {
-              "required": false,
-              "description": "Product sale price."
-            },
-            "date_on_sale_from": {
-              "required": false,
-              "description": "Start date of sale price."
-            },
-            "date_on_sale_to": {
-              "required": false,
-              "description": "End data of sale price."
-            },
-            "virtual": {
-              "required": false,
-              "description": "If the product is virtual."
-            },
-            "downloadable": {
-              "required": false,
-              "description": "If the product is downloadable."
-            },
-            "downloads": {
-              "required": false,
-              "description": "List of downloadable files."
-            },
-            "download_limit": {
-              "required": false,
-              "description": "Amount of times the product can be downloaded."
-            },
-            "download_expiry": {
-              "required": false,
-              "description": "Number of days that the customer has up to be able to download the product."
-            },
-            "download_type": {
-              "required": false,
-              "enum": [
-                "standard",
-                "application",
-                "music"
-              ],
-              "description": "Download type, this controls the schema on the front-end."
-            },
-            "external_url": {
-              "required": false,
-              "description": "Product external URL. Only for external products."
-            },
-            "button_text": {
-              "required": false,
-              "description": "Product external button text. Only for external products."
-            },
-            "tax_status": {
-              "required": false,
-              "enum": [
-                "taxable",
-                "shipping",
-                "none"
-              ],
-              "description": "Tax status."
-            },
-            "tax_class": {
-              "required": false,
-              "description": "Tax class."
-            },
-            "manage_stock": {
-              "required": false,
-              "description": "Stock management at product level."
-            },
-            "stock_quantity": {
-              "required": false,
-              "description": "Stock quantity."
-            },
-            "in_stock": {
-              "required": false,
-              "description": "Controls whether or not the product is listed as \"in stock\" or \"out of stock\" on the frontend."
-            },
-            "backorders": {
-              "required": false,
-              "enum": [
-                "no",
-                "notify",
-                "yes"
-              ],
-              "description": "If managing stock, this controls if backorders are allowed."
-            },
-            "sold_individually": {
-              "required": false,
-              "description": "Allow one item to be bought in a single order."
-            },
-            "weight": {
-              "required": false,
-              "description": "Product weight (kg)."
-            },
-            "dimensions": {
-              "required": false,
-              "description": "Product dimensions."
-            },
-            "shipping_class": {
-              "required": false,
-              "description": "Shipping class slug."
-            },
-            "reviews_allowed": {
-              "required": false,
-              "description": "Allow reviews."
-            },
-            "upsell_ids": {
-              "required": false,
-              "description": "List of up-sell products IDs."
-            },
-            "cross_sell_ids": {
-              "required": false,
-              "description": "List of cross-sell products IDs."
-            },
-            "parent_id": {
-              "required": false,
-              "description": "Product parent ID."
-            },
-            "purchase_note": {
-              "required": false,
-              "description": "Optional note to send the customer after purchase."
-            },
-            "categories": {
-              "required": false,
-              "description": "List of categories."
-            },
-            "tags": {
-              "required": false,
-              "description": "List of tags."
-            },
-            "images": {
-              "required": false,
-              "description": "List of images."
-            },
-            "attributes": {
-              "required": false,
-              "description": "List of attributes."
-            },
-            "default_attributes": {
-              "required": false,
-              "description": "Defaults variation attributes."
-            },
-            "variations": {
-              "required": false,
-              "description": "List of variations."
-            },
-            "menu_order": {
-              "required": false,
-              "description": "Menu order, used to custom sort products."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/products/batch"
-      }
-    },
-    "/wc/v1/reports/sales": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "period": {
-              "required": false,
-              "enum": [
-                "week",
-                "month",
-                "last_month",
-                "year"
-              ],
-              "description": "Report period."
-            },
-            "date_min": {
-              "required": false,
-              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-DD format."
-            },
-            "date_max": {
-              "required": false,
-              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-DD format."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/reports/sales"
-      }
-    },
-    "/wc/v1/reports/top_sellers": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "period": {
-              "required": false,
-              "enum": [
-                "week",
-                "month",
-                "last_month",
-                "year"
-              ],
-              "description": "Report period."
-            },
-            "date_min": {
-              "required": false,
-              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-DD format."
-            },
-            "date_max": {
-              "required": false,
-              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-DD format."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/reports/top_sellers"
-      }
-    },
-    "/wc/v1/reports": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/reports"
-      }
-    },
-    "/wc/v1/taxes/classes": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "name": {
-              "required": true,
-              "description": "Tax class name."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/taxes/classes"
-      }
-    },
-    "/wc/v1/taxes/classes/(?P<slug>\\w[\\w\\s\\-]*)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/taxes": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "offset": {
-              "required": false,
-              "description": "Offset the result set by a specific number of items."
-            },
-            "order": {
-              "required": false,
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "order",
-              "enum": [
-                "id",
-                "order"
-              ],
-              "description": "Sort collection by object attribute."
-            },
-            "class": {
-              "required": false,
-              "enum": [
-                "standard",
-                "reduced-rate",
-                "zero-rate"
-              ],
-              "description": "Sort by tax class."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "country": {
-              "required": false,
-              "description": "Country ISO 3166 code."
-            },
-            "state": {
-              "required": false,
-              "description": "State code."
-            },
-            "postcode": {
-              "required": false,
-              "description": "Postcode/ZIP."
-            },
-            "city": {
-              "required": false,
-              "description": "City name."
-            },
-            "rate": {
-              "required": false,
-              "description": "Tax rate."
-            },
-            "name": {
-              "required": false,
-              "description": "Tax rate name."
-            },
-            "priority": {
-              "required": false,
-              "default": 1,
-              "description": "Tax priority."
-            },
-            "compound": {
-              "required": false,
-              "default": false,
-              "description": "Whether or not this is a compound rate."
-            },
-            "shipping": {
-              "required": false,
-              "default": true,
-              "description": "Whether or not this tax rate also gets applied to shipping."
-            },
-            "order": {
-              "required": false,
-              "description": "Indicates the order that will appear in queries."
-            },
-            "class": {
-              "required": false,
-              "default": "standard",
-              "enum": [
-                "standard",
-                "reduced-rate",
-                "zero-rate"
-              ],
-              "description": "Tax class."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/taxes"
-      }
-    },
-    "/wc/v1/taxes/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "country": {
-              "required": false,
-              "description": "Country ISO 3166 code."
-            },
-            "state": {
-              "required": false,
-              "description": "State code."
-            },
-            "postcode": {
-              "required": false,
-              "description": "Postcode/ZIP."
-            },
-            "city": {
-              "required": false,
-              "description": "City name."
-            },
-            "rate": {
-              "required": false,
-              "description": "Tax rate."
-            },
-            "name": {
-              "required": false,
-              "description": "Tax rate name."
-            },
-            "priority": {
-              "required": false,
-              "description": "Tax priority."
-            },
-            "compound": {
-              "required": false,
-              "description": "Whether or not this is a compound rate."
-            },
-            "shipping": {
-              "required": false,
-              "description": "Whether or not this tax rate also gets applied to shipping."
-            },
-            "order": {
-              "required": false,
-              "description": "Indicates the order that will appear in queries."
-            },
-            "class": {
-              "required": false,
-              "enum": [
-                "standard",
-                "reduced-rate",
-                "zero-rate"
-              ],
-              "description": "Tax class."
-            }
-          }
-        },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/taxes/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "country": {
-              "required": false,
-              "description": "Country ISO 3166 code."
-            },
-            "state": {
-              "required": false,
-              "description": "State code."
-            },
-            "postcode": {
-              "required": false,
-              "description": "Postcode/ZIP."
-            },
-            "city": {
-              "required": false,
-              "description": "City name."
-            },
-            "rate": {
-              "required": false,
-              "description": "Tax rate."
-            },
-            "name": {
-              "required": false,
-              "description": "Tax rate name."
-            },
-            "priority": {
-              "required": false,
-              "description": "Tax priority."
-            },
-            "compound": {
-              "required": false,
-              "description": "Whether or not this is a compound rate."
-            },
-            "shipping": {
-              "required": false,
-              "description": "Whether or not this tax rate also gets applied to shipping."
-            },
-            "order": {
-              "required": false,
-              "description": "Indicates the order that will appear in queries."
-            },
-            "class": {
-              "required": false,
-              "enum": [
-                "standard",
-                "reduced-rate",
-                "zero-rate"
-              ],
-              "description": "Tax class."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/taxes/batch"
-      }
-    },
-    "/wc/v1/webhooks/(?P<webhook_id>[\\d]+)/deliveries": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/webhooks/(?P<webhook_id>[\\d]+)/deliveries/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/webhooks": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            },
-            "page": {
-              "required": false,
-              "default": 1,
-              "description": "Current page of the collection."
-            },
-            "per_page": {
-              "required": false,
-              "default": 10,
-              "description": "Maximum number of items to be returned in result set."
-            },
-            "search": {
-              "required": false,
-              "description": "Limit results to those matching a string."
-            },
-            "after": {
-              "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
-            },
-            "before": {
-              "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
-            },
-            "exclude": {
-              "required": false,
-              "default": [],
-              "description": "Ensure result set excludes specific ids."
-            },
-            "include": {
-              "required": false,
-              "default": [],
-              "description": "Limit result set to specific ids."
-            },
-            "offset": {
-              "required": false,
-              "description": "Offset the result set by a specific number of items."
-            },
-            "order": {
-              "required": false,
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Order sort attribute ascending or descending."
-            },
-            "orderby": {
-              "required": false,
-              "default": "date",
-              "enum": [
-                "date",
-                "id",
-                "include",
-                "title",
-                "slug"
-              ],
-              "description": "Sort collection by object attribute."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to posts with a specific slug."
-            },
-            "filter": {
-              "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
-            },
-            "status": {
-              "required": false,
-              "default": "all",
-              "enum": [
-                "all",
-                "active",
-                "paused",
-                "disabled"
-              ],
-              "description": "Limit result set to webhooks assigned a specific status."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "A friendly name for the webhook."
-            },
-            "status": {
-              "required": false,
-              "default": "active",
-              "enum": [
-                "active",
-                "paused",
-                "disabled"
-              ],
-              "description": "Webhook status."
-            },
-            "topic": {
-              "required": true
-            },
-            "secret": {
-              "required": false,
-              "description": "Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided."
-            },
-            "delivery_url": {
-              "required": true
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/webhooks"
-      }
-    },
-    "/wc/v1/webhooks/(?P<id>[\\d]+)": {
-      "namespace": "wc/v1",
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "GET"
-          ],
-          "args": {
-            "context": {
-              "required": false,
-              "default": "view",
-              "enum": [
-                "view",
-                "edit"
-              ],
-              "description": "Scope under which the request is made; determines fields present in response."
-            }
-          }
-        },
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "A friendly name for the webhook."
-            },
-            "status": {
-              "required": false,
-              "enum": [
-                "active",
-                "paused",
-                "disabled"
-              ],
-              "description": "Webhook status."
-            },
-            "topic": {
-              "required": false,
-              "description": "Webhook topic."
-            },
-            "secret": {
-              "required": false,
-              "description": "Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided."
-            }
-          }
-        },
-        {
-          "methods": [
-            "DELETE"
-          ],
-          "args": {
-            "force": {
-              "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            }
-          }
-        }
-      ]
-    },
-    "/wc/v1/webhooks/batch": {
-      "namespace": "wc/v1",
-      "methods": [
-        "POST",
-        "PUT",
-        "PATCH"
-      ],
-      "endpoints": [
-        {
-          "methods": [
-            "POST",
-            "PUT",
-            "PATCH"
-          ],
-          "args": {
-            "name": {
-              "required": false,
-              "description": "A friendly name for the webhook."
-            },
-            "status": {
-              "required": false,
-              "enum": [
-                "active",
-                "paused",
-                "disabled"
-              ],
-              "description": "Webhook status."
-            },
-            "topic": {
-              "required": false,
-              "description": "Webhook topic."
-            },
-            "secret": {
-              "required": false,
-              "description": "Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided."
-            }
-          }
-        }
-      ],
-      "_links": {
-        "self": "https://example.com/wp-json/wc/v1/webhooks/batch"
-      }
+        ]
     }
-  },
-  "_links": {
-    "up": [
-      {
-        "href": "https://example.com/wp-json/"
-      }
-    ]
-  }
 }
-```
