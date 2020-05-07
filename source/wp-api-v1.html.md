@@ -5,9 +5,9 @@ language_tabs:
   - curl: cURL
 
 toc_footers:
-  - <a href="https://github.com/woocommerce/woocommerce-rest-api-docs">Contributing to WC Bookings REST API Docs</a>
-  - <a href="https://docs.woocommerce.com/documentation/plugins/woocommerce/">WooCommerce Documentation</a>
-  - <a href="https://github.com/woocommerce/woocommerce">WooCommerce Repository</a>
+  - <a href="https://github.com/woocommerce/woocommerce-bookings-api-docs">Contributing to WC Bookings REST API Docs</a>
+  - <a href="https://docs.woocommerce.com/documentation/plugins/woocommerce/woocommerce-extensions/woocommerce-bookings/">WooCommerce Bookings Documentation</a>
+  - <a href="https://woocommerce.com/products/woocommerce-bookings">WooCommerce Bookings extension</a>
   - <a href="https://github.com/tripit/slate">Documentation Powered by Slate</a>
 
 includes:
