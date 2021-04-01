@@ -24,7 +24,7 @@ The Bookings API allows you to create, read, and delete individual bookings as w
 | `status`            | string    | The current status of the booking. <i class="label label-info">read-only</i> |
 | `local_timezone`    | string    | The local timezone used when the booking was purchased. <i class="label label-info">read-only</i> |
 
-## Create a booking ##
+## Create a booking (INCOMPLETE DO NOT USE!)##
 
 This API helps you to create a new booking.
 
